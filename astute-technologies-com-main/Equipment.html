@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Catalog - Astute Technologies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-red: #dc2626;
+            --dark-gray: #374151;
+            --light-gray: #f3f4f6;
+            --accent-black: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: white;
+        }
+        
+        .hero-section {
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/equipment-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.7);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(17, 24, 39, 0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .emergency-support {
+            background: linear-gradient(135deg, var(--primary-red), #b91c1c);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+        
+        .emergency-support:hover {
+            background: linear-gradient(135deg, #b91c1c, var(--primary-red));
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+        }
+        
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* Logo styling */
+        .logo-img {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            transition: all 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            filter: drop-shadow(0 6px 10px rgba(220, 38, 38, 0.3));
+            transform: scale(1.05);
+        }
+        
+        /* WhatsApp icon styling */
+        .whatsapp-icon {
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .whatsapp-icon:before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid #25D366;
+            border-radius: 50%;
+            animation: pulse-ring 1.5s infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        /* Equipment category styling */
+        .category-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .category-card:hover {
+            border-left: 4px solid var(--primary-red);
+            transform: translateX(5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-header {
+            background: linear-gradient(135deg, var(--primary-red), #b91c1c);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+            font-size: 1.25rem;
+        }
+        
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 12px;
+            padding: 20px;
+            background: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .equipment-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+        
+        .equipment-item:hover {
+            background: #fee2e2;
+            transform: translateY(-2px);
+        }
+        
+        .equipment-icon {
+            width: 36px;
+            height: 36px;
+            background-color: #fee2e2;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 14px;
+            color: var(--primary-red);
+            flex-shrink: 0;
+        }
+        
+        /* Quick navigation */
+        .quick-nav {
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+            background: white;
+            padding: 16px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .nav-pill {
+            padding: 8px 16px;
+            background: #f3f4f6;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .nav-pill:hover {
+            background: var(--primary-red);
+            color: white;
+        }
+        
+        /* Service image styling */
+        .service-image {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .equipment-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 16px;
+            }
+            
+            .equipment-item {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+            
+            .category-header {
+                padding: 14px 20px;
+                font-size: 1.1rem;
+            }
+            
+            .hero-section {
+                height: 60vh;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .quick-nav {
+                top: 70px;
+            }
+            
+            .hero-section {
+                height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/264818529722" target="_blank" class="fixed bottom-6 right-6 z-50 pulse">
+        <div class="whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </a>
+    
+    <!-- Navigation -->
+    <nav class="sticky-nav bg-gray-900 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Company Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="images/logo.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                    <span class="text-xl font-bold text-white">Astute Technologies</span>
+                </a>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium transition-colors">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium transition-colors">Services</a>
+                <a href="equipment.html" class="text-red-400 font-medium transition-colors">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium transition-colors">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium transition-colors">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium transition-colors">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium transition-colors">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden absolute top-full left-0 w-full bg-gray-900 shadow-lg py-4 hidden">
+            <div class="container mx-auto px-4 flex flex-col space-y-4">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium py-2">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium py-2">Services</a>
+                <a href="equipment.html" class="text-red-400 font-medium py-2">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium py-2">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium py-2">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium py-2">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Fixed to show full content -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 glow-text">Equipment Catalog</h1>
+            <p class="text-xl md:text-2xl mb-8">Complete Range of Technology Equipment & Accessories</p>
+            <a href="#catalog" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105">
+                Browse Catalog
+            </a>
+        </div>
+    </section>
+
+    <!-- Quick Navigation -->
+    <section class="quick-nav">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-3 justify-center">
+                <a href="#computers" class="nav-pill">💻 Computers</a>
+                <a href="#peripherals" class="nav-pill">🖥️ Peripherals</a>
+                <a href="#components" class="nav-pill">🧩 Components</a>
+                <a href="#cables" class="nav-pill">🔌 Cables</a>
+                <a href="#networking" class="nav-pill">🖧 Networking</a>
+                <a href="#accessories" class="nav-pill">⚙️ Accessories</a>
+                <a href="#software" class="nav-pill">🧰 Software</a>
+                <a href="#office" class="nav-pill">🖨️ Office</a>
+                <a href="#power" class="nav-pill">🔋 Power</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Catalog -->
+    <section id="catalog" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Complete Equipment Catalog</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Browse our comprehensive range of technology equipment and accessories</p>
+            
+            <!-- Computers Section -->
+            <div id="computers" class="category-card mb-12">
+                <h3 class="category-header">💻 Main Computer Equipment</h3>
+                <img src="computer-equipment.jpg" alt="Computer Equipment Collection" class="service-image">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <span>Desktop Computers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <span>Laptops / Notebooks</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <span>All-in-One PCs</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <span>Computer Towers (CPU Units)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <span>Mini PCs</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <span>Servers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <span>Workstations</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-tablet-alt"></i>
+                        </div>
+                        <span>Tablets</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Peripherals Section -->
+            <div id="peripherals" class="category-card mb-12">
+                <h3 class="category-header">🖥️ Computer Peripherals</h3>
+                <img src="computer-peripherals.jpg" alt="Computer Peripherals Collection" class="service-image">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <span>Monitors / Screens</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-keyboard"></i>
+                        </div>
+                        <span>Keyboards (wired / wireless / mechanical)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-mouse"></i>
+                        </div>
+                        <span>Mouse (wired / wireless / optical)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <span>Printers (Laser / Inkjet / Thermal)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-scanner"></i>
+                        </div>
+                        <span>Scanners</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <span>Projectors</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <span>External Hard Drives</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-usb"></i>
+                        </div>
+                        <span>Flash Drives (USB sticks)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <span>External SSDs</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
+                        <span>Speakers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <span>Headphones / Headsets</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <span>Webcams</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <span>Microphones</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Components Section -->
+            <div id="components" class="category-card mb-12">
+                <h3 class="category-header">🧩 Internal Components</h3>
+                <img src="computer-components.jpg" alt="Computer Components Collection" class="service-image">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <span>Motherboards</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <span>Processors (CPUs)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <span>Graphics Cards (GPUs)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-memory"></i>
+                        </div>
+                        <span>RAM (Memory Modules)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <span>Hard Disk Drives (HDD)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <span>Solid-State Drives (SSD)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <span>Power Supply Units (PSU)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-fan"></i>
+                        </div>
+                        <span>Cooling Fans</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-temperature-high"></i>
+                        </div>
+                        <span>CPU Heatsinks</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <span>Network Interface Cards (NIC)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
+                        <span>Sound Cards</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-compact-disc"></i>
+                        </div>
+                        <span>Optical Drives (DVD / Blu-ray)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cables Section -->
+            <div id="cables" class="category-card mb-12">
+                <h3 class="category-header">🔌 Cables & Connectors</h3>
+                <img src="cables-connectors.jpg" alt="Cables & Connectors Collection" class="service-image">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <span>Power Cables</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-ethernet"></i>
+                        </div>
+                        <span>VGA Cables</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-hdmi"></i>
+                        </div>
+                        <span>HDMI Cables</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <span>DisplayPort Cables</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <span>DVI Cables</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-usb"></i>
+                        </div>
+                        <span>USB Cables (Type-A, Type-B, Type-C)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <span>Ethernet Cables (Cat5, Cat6, Cat7)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <span>Audio Cables (3.5mm Jack, AUX, RCA)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <span>Printer Cables (USB-B)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <span>SATA Cables</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <span>Power Extension Cords</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <span>Charging Cables</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <span>Adapter Cables (HDMI to VGA, USB to LAN, etc.)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Networking Section -->
+            <div id="networking" class="category-card mb-12">
+                <h3 class="category-header">🖧 Networking Equipment</h3>
+                <img src="networking-equipment.jpg" alt="Networking Equipment Collection" class="service-image">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <span>Routers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-broadcast-tower"></i>
+                        </div>
+                        <span>Modems</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <span>Network Switches</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <span>Hubs</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <span>Wireless Access Points</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <span>Network Racks</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-th"></i>
+                        </div>
+                        <span>Patch Panels</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <span>Network Cables (LAN)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-satellite-dish"></i>
+                        </div>
+                        <span>Wi-Fi Antennas</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Accessories Section -->
+            <div id="accessories" class="category-card mb-12">
+                <h3 class="category-header">⚙️ IT Accessories & Tools</h3>
+                <img src="it-accessories.jpg" alt="IT Accessories Collection" class="service-image">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-battery-full"></i>
+                        </div>
+                        <span>UPS (Uninterruptible Power Supply)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <span>Surge Protectors</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-mouse"></i>
+                        </div>
+                        <span>Mouse Pads</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <span>Laptop Cooling Pads</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <span>Docking Stations</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-cable-car"></i>
+                        </div>
+                        <span>Cable Management Kits</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-spray-can"></i>
+                        </div>
+                        <span>Cleaning Kits</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <span>Laptop Bags & Sleeves</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Software Section -->
+            <div id="software" class="category-card mb-12">
+                <h3 class="category-header">🧰 Software & Drivers (Names Only)</h3>
+                <img src="software-drivers.jpg" alt="Software & Drivers Collection" class="service-image">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <span>Windows Drivers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <span>Display / Graphics Drivers (NVIDIA, AMD, Intel HD)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
+                        <span>Audio Drivers (Realtek, Creative)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <span>Network Drivers (Intel, Broadcom, Atheros)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <span>Printer Drivers (HP, Canon, Epson, Brother)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <span>Chipset Drivers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <span>Touchpad Drivers (Synaptics, Elan)</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fab fa-bluetooth"></i>
+                        </div>
+                        <span>Bluetooth Drivers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <span>Wi-Fi Drivers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <span>Webcam Drivers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-usb"></i>
+                        </div>
+                        <span>USB Drivers</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Office Section -->
+            <div id="office" class="category-card mb-12">
+                <h3 class="category-header">🖨️ Office & Peripheral Devices</h3>
+                <img src="office-equipment.jpg" alt="Office Equipment Collection" class="service-image">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-copy"></i>
+                        </div>
+                        <span>Photocopiers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-fax"></i>
+                        </div>
+                        <span>Fax Machines</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-cash-register"></i>
+                        </div>
+                        <span>POS Machines</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-barcode"></i>
+                        </div>
+                        <span>Barcode Scanners</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <span>Receipt Printers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <span>Cash Drawers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <span>Card Readers</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <span>Label Printers</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Power Section -->
+            <div id="power" class="category-card mb-12">
+                <h3 class="category-header">🔋 Power & Backup Equipment</h3>
+                <img src="power-equipment.jpg" alt="Power Equipment Collection" class="service-image">
+                <div class="equipment-grid">
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-battery-full"></i>
+                        </div>
+                        <span>UPS Systems</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-battery-three-quarters"></i>
+                        </div>
+                        <span>Power Banks</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <span>Inverters</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <span>Power Adapters</span>
+                    </div>
+                    <div class="equipment-item">
+                        <div class="equipment-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <span>Laptop Chargers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-red-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Need Specific Equipment?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Contact us for pricing and availability of any technology equipment</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contact.html" class="bg-white text-red-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-colors">
+                    Request Quote
+                </a>
+                <a href="tel:+264818529722" class="bg-transparent border-2 border-white hover:bg-white hover:text-red-600 font-bold py-3 px-8 rounded-lg transition-all">
+                    Call Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="flex items-center mb-4">
+                        <img src="images/logo.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                        <span class="text-xl font-bold">Astute Technologies</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Your trusted partner for comprehensive technology solutions in Namibia.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/AstutenessTechnology" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="equipment.html" class="text-red-400 transition-colors">Equipment</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="bingo-lucky6-package.html" class="text-gray-400 hover:text-white transition-colors">Bingo & Lucky 6 Software</a></li>
+                        <li><a href="point-of-sale.html" class="text-gray-400 hover:text-white transition-colors">POS Systems</a></li>
+                        <li><a href="it-support.html" class="text-gray-400 hover:text-white transition-colors">IT Support Services</a></li>
+                        <li><a href="acer-computer-box.html" class="text-gray-400 hover:text-white transition-colors">Acer Computer Box</a></li>
+                        <li><a href="betting-machine-terminal.html" class="text-gray-400 hover:text-white transition-colors">Betting Terminals</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Emergency Support</h3>
+                    <div class="emergency-support rounded-lg p-4 mb-4">
+                        <div class="flex items-center mb-2">
+                            <span class="live-dot"></span>
+                            <span class="font-bold">LIVE 24/7 SUPPORT</span>
+                        </div>
+                        <a href="tel:+264818529722" class="block text-xl font-bold mb-1">+264 81 852 9722</a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-sm">WhatsApp: +264 81 852 9722</a>
+                    </div>
+                    <p class="text-gray-400 text-sm">Windhoek, Khomas Region, Namibia</p>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400 font-bold">&copy; 2025 Astute Technologies. All Rights Reserved.</p>
+                </div>
+                
+                <div class="flex items-center">
+                    <span class="text-gray-400 mr-2">Designed and Developed by</span>
+                    <a href="https://www.amateta.com" target="_blank" class="flex items-center text-white font-bold hover:text-red-400 transition-colors">
+                        <img src="images/amateta-logo-small.png" alt="Amateta" class="h-6 w-6 mr-2">
+                        www.amateta.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('#mobileMenu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Sticky Navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.sticky-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
