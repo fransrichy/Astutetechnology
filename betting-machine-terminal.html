@@ -4,61 +4,1002 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Betting Machine Terminal - Astute Technologies</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-red: #dc2626;
+            --dark-gray: #374151;
+            --light-gray: #f3f4f6;
+            --accent-black: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: white;
+        }
+        
+        .hero-section {
+            height: 50vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/bg.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.7);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(17, 24, 39, 0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--primary-red);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .emergency-support {
+            background: linear-gradient(135deg, var(--primary-red), #b91c1c);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+        
+        .emergency-support:hover {
+            background: linear-gradient(135deg, #b91c1c, var(--primary-red));
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+        }
+        
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .footer-logo {
+            filter: brightness(0) invert(1);
+        }
+        
+        .partner-logo {
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Logo styling */
+        .logo-img {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            transition: all 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            filter: drop-shadow(0 6px 10px rgba(220, 38, 38, 0.3));
+            transform: scale(1.05);
+        }
+        
+        /* Service detail styling */
+        .service-detail {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .service-detail:hover {
+            border-left: 4px solid var(--primary-red);
+            transform: translateX(5px);
+        }
+        
+        /* Old WhatsApp icon styling */
+        .whatsapp-icon {
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .whatsapp-icon:before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid #25D366;
+            border-radius: 50%;
+            animation: pulse-ring 1.5s infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        /* Betting Terminal specific styling */
+        .terminal-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .terminal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #fee2e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary-red);
+            font-size: 1.5rem;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .spec-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .spec-icon {
+            width: 40px;
+            height: 40px;
+            background: #fee2e2;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .package-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .package-card:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+        }
+        
+        .package-card.popular {
+            border-color: var(--primary-red);
+            position: relative;
+            transform: scale(1.05);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-red);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .square-image {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+        
+        /* Tech Animation Background */
+        .tech-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .tech-icon {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatTech 20s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatTech {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Terminal demo styling */
+        .terminal-demo {
+            background: linear-gradient(135deg, #1e293b, #374151);
+            border-radius: 12px;
+            padding: 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .terminal-screen {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            min-height: 200px;
+            border: 2px solid #334155;
+        }
+        
+        .terminal-command {
+            color: #10b981;
+        }
+        
+        .terminal-output {
+            color: #e2e8f0;
+            margin-top: 0.5rem;
+        }
+        
+        .terminal-prompt {
+            color: #f59e0b;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="../index.html"><img src="A STUTE LOGO FINAL Trasparent.png" alt="Astute Technologies Logo"></a>
+<body class="bg-white">
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20your%20Betting%20Machine%20Terminal." target="_blank" class="fixed bottom-6 right-6 z-50 pulse">
+        <div class="whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </a>
+    
+    <!-- Navigation -->
+    <nav class="sticky-nav bg-gray-900 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Company Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="./images/A STUTE LOGO FINAL Trasparent.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                </a>
             </div>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../index.html#services">Services</a></li>
-                <li><a href="../index.html#about">About Us</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium transition-colors">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium transition-colors">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium transition-colors">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium transition-colors">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium transition-colors">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium transition-colors">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium transition-colors">Contact</a>
             </div>
-        </nav>
-    </header>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden absolute top-full left-0 w-full bg-gray-900 shadow-lg py-4 hidden">
+            <div class="container mx-auto px-4 flex flex-col space-y-4">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium py-2">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium py-2">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium py-2">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium py-2">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium py-2">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium py-2">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-    <main>
-        <section class="service-page-content">
-            <h1>Betting Machine Terminal</h1>
-            <img src="Bet.jpeg" alt="Betting Machine Terminal">
-            <p>Our Betting Machine Terminals are cutting-edge solutions designed for the modern betting industry. They offer a seamless and engaging experience for users, while providing robust and reliable operations for operators. These terminals are built with user-friendliness and comprehensive functionality in mind.</p>
-            <h3>Key Features:</h3>
-            <ul>
-                <li>User-Friendly Touchscreen Interface for intuitive navigation.</li>
-                <li>Live Betting Updates with Real-Time Odds to keep players engaged.</li>
-                <li>Multi-Language Support to cater to a diverse clientele.</li>
-                <li>Compact and Modern Design that fits seamlessly into any environment.</li>
-                <li>Easy Ticket Printing with Receipt Verification for secure transactions.</li>
-                <li>Wide Range of Sports and Games Coverage to attract more users.</li>
-                <li>24/7 Operational Capability ensures continuous service.</li>
-                <li>Customizable Software Integration for tailored business needs.</li>
-                <li>Durable and Robust Construction for long-lasting performance.</li>
-            </ul>
-            <p>Invest in our Betting Machine Terminals to elevate your betting business with state-of-the-art technology and unparalleled reliability.</p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Tech Animation Background -->
+        <div class="tech-bg-animation" id="techAnimation">
+            <i class="fas fa-microchip tech-icon" style="left: 10%; animation-delay: 0s;"></i>
+            <i class="fas fa-server tech-icon" style="left: 30%; animation-delay: 4s;"></i>
+            <i class="fas fa-code tech-icon" style="left: 50%; animation-delay: 8s;"></i>
+            <i class="fas fa-network-wired tech-icon" style="left: 70%; animation-delay: 12s;"></i>
+            <i class="fas fa-database tech-icon" style="left: 90%; animation-delay: 16s;"></i>
+            
+            <i class="fas fa-cogs tech-icon" style="left: 20%; animation-delay: 2s; font-size: 30px;"></i>
+            <i class="fas fa-shield-alt tech-icon" style="left: 80%; animation-delay: 6s; font-size: 18px;"></i>
+        </div>
+        
+        <div class="container mx-auto h-full flex items-center justify-center">
+            <div class="hero-content">
+                <h1 class="text-4xl md:text-6xl font-bold mb-0 glow-text">Betting Machine Terminal</h1>
+                <p class="text-xl md:text-2xl mb-8">Professional Gaming Solutions for Your Establishment</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#packages" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105">
+                        View Packages
+                    </a>
+                    <a href="contact.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all">
+                        Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Betting%20Machine%20Terminal." target="_blank" class="btn">Enquire on WhatsApp</a>
-            <a href="../index.html#services" class="btn back-to-home">Back to Services</a>
-        </section>
-    </main>
+    <!-- Terminal Overview Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Professional Betting Terminal Solution</h2>
+                    <p class="text-gray-600 mb-6">Our betting machine terminals are designed specifically for gaming establishments, offering robust performance, user-friendly interfaces, and comprehensive management features.</p>
+                    <p class="text-gray-600 mb-6">Built with reliability and security in mind, these terminals can handle high-volume transactions while providing an engaging experience for your customers.</p>
+                    <p class="text-gray-600 mb-8">Perfect for Lucky 6, Bingo, Sports Betting, and other gaming operations with seamless integration into your existing systems.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-red-600 text-white py-2 px-4 rounded-lg font-bold">
+                            N$ 2,000+
+                        </div>
+                        <div class="bg-gray-800 text-white py-2 px-4 rounded-lg font-bold">
+                            24/7 Support
+                        </div>
+                        <div class="bg-green-600 text-white py-2 px-4 rounded-lg font-bold">
+                            Easy Setup
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-xl p-8">
+                    <img src="/images/betting-terminal.jpg" alt="Betting Machine Terminal" class="w-full h-auto rounded-lg shadow-md">
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Astute Technologies. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://www.facebook.com/AstutenessTechnology" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://wa.me/264818529722" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="YOUR_INSTAGRAM_LINK" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <!-- Key Features Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Key Features</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Designed for performance, security, and user experience</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="terminal-card bg-white rounded-xl p-8 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Secure Transactions</h3>
+                    <p class="text-gray-600">Advanced encryption and secure payment processing to protect all transactions and customer data.</p>
+                </div>
+                
+                <div class="terminal-card bg-white rounded-xl p-8 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">High Performance</h3>
+                    <p class="text-gray-600">Fast processing speeds with minimal downtime, ensuring smooth operations during peak hours.</p>
+                </div>
+                
+                <div class="terminal-card bg-white rounded-xl p-8 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">User-Friendly Interface</h3>
+                    <p class="text-gray-600">Intuitive design that requires minimal training for both staff and customers to operate efficiently.</p>
+                </div>
+                
+                <div class="terminal-card bg-white rounded-xl p-8 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Real-time Analytics</h3>
+                    <p class="text-gray-600">Comprehensive reporting and analytics to track performance, sales, and customer behavior.</p>
+                </div>
+                
+                <div class="terminal-card bg-white rounded-xl p-8 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Remote Management</h3>
+                    <p class="text-gray-600">Manage multiple terminals remotely with centralized control and monitoring capabilities.</p>
+                </div>
+                
+                <div class="terminal-card bg-white rounded-xl p-8 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Easy Integration</h3>
+                    <p class="text-gray-600">Seamlessly integrates with existing systems, payment processors, and gaming software.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Technical Specifications</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Built with quality components for reliable performance</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Hardware Specifications</h3>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Processor</h4>
+                                <p class="text-gray-600">Intel Core i5 or equivalent, 2.5GHz+</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fas fa-memory"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Memory</h4>
+                                <p class="text-gray-600">8GB DDR4 RAM (Expandable to 16GB)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fas fa-hdd"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Storage</h4>
+                                <p class="text-gray-600">256GB SSD (Options up to 1TB available)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Display</h4>
+                                <p class="text-gray-600">19-24 inch Touchscreen LCD Display</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fas fa-print"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Receipt Printer</h4>
+                                <p class="text-gray-600">High-speed thermal receipt printer included</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fas fa-barcode"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Barcode Scanner</h4>
+                                <p class="text-gray-600">Integrated high-speed barcode scanner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Software & Security</h3>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fab fa-windows"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Operating System</h4>
+                                <p class="text-gray-600">Windows 10/11 Professional</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Security</h4>
+                                <p class="text-gray-600">Multi-layer security with encryption</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Backup System</h4>
+                                <p class="text-gray-600">Automated cloud and local backup</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Connectivity</h4>
+                                <p class="text-gray-600">Dual Ethernet + WiFi connectivity</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fas fa-sync"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Updates</h4>
+                                <p class="text-gray-600">Automatic software updates</p>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Compliance</h4>
+                                <p class="text-gray-600">Meets gaming industry standards</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Package Options -->
+    <section id="packages" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Package Options</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Choose the perfect solution for your gaming establishment</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Basic Package -->
+                <div class="package-card bg-white rounded-xl p-8">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">Starter Package</h3>
+                    <div class="text-3xl font-bold text-red-600 text-center mb-6">N$ 2,000</div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Basic Betting Terminal Unit</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>19-inch Touchscreen Display</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Integrated Receipt Printer</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Basic Gaming Software</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-times text-gray-400 mr-3"></i>
+                            <span class="text-gray-400">Advanced Analytics</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-times text-gray-400 mr-3"></i>
+                            <span class="text-gray-400">Remote Management</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Starter%20Betting%20Terminal%20Package." target="_blank" class="block w-full bg-gray-800 hover:bg-black text-white text-center font-bold py-3 px-6 rounded-lg transition-colors">
+                        Enquire Now
+                    </a>
+                </div>
+                
+                <!-- Professional Package -->
+                <div class="package-card bg-white rounded-xl p-8 popular">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">Professional Package</h3>
+                    <div class="text-3xl font-bold text-red-600 text-center mb-6">N$ 3,500</div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Advanced Betting Terminal Unit</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>22-inch Touchscreen Display</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>High-speed Receipt Printer</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Barcode Scanner</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Advanced Gaming Software</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Real-time Analytics Dashboard</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Basic Remote Management</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Professional%20Betting%20Terminal%20Package." target="_blank" class="block w-full bg-red-600 hover:bg-red-700 text-white text-center font-bold py-3 px-6 rounded-lg transition-colors">
+                        Enquire Now
+                    </a>
+                </div>
+                
+                <!-- Enterprise Package -->
+                <div class="package-card bg-white rounded-xl p-8">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">Enterprise Package</h3>
+                    <div class="text-3xl font-bold text-red-600 text-center mb-6">N$ 5,000+</div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Premium Betting Terminal Unit</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>24-inch Touchscreen Display</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Commercial-grade Receipt Printer</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Advanced Barcode Scanner</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Enterprise Gaming Software</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Comprehensive Analytics Suite</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Full Remote Management System</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Priority 24/7 Support</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Enterprise%20Betting%20Terminal%20Package." target="_blank" class="block w-full bg-gray-800 hover:bg-black text-white text-center font-bold py-3 px-6 rounded-lg transition-colors">
+                        Enquire Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Demo Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">System Overview</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">See how our betting terminals work in action</p>
+            
+            <div class="terminal-demo max-w-4xl mx-auto">
+                <div class="terminal-screen">
+                    <div class="terminal-command">> SYSTEM STATUS: ONLINE</div>
+                    <div class="terminal-output">All systems operational. Ready for transactions.</div>
+                    <br>
+                    <div class="terminal-command">> CURRENT SESSION</div>
+                    <div class="terminal-output">User: Operator_01 | Terminal: BT-042 | Location: Main Floor</div>
+                    <br>
+                    <div class="terminal-command">> TRANSACTION PROCESSING</div>
+                    <div class="terminal-output">Bet placed: Lucky 6 - Draw #2847 | Amount: N$ 50.00</div>
+                    <div class="terminal-output">Ticket printed: #BT2847-001 | Time: 14:23:45</div>
+                    <br>
+                    <div class="terminal-prompt">> READY FOR NEXT TRANSACTION...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support & Services -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Support & Services</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Comprehensive support to keep your business running smoothly</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-xl p-6 text-center">
+                    <div class="feature-icon mx-auto mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Installation</h3>
+                    <p class="text-gray-600">Professional installation and setup at your location</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 text-center">
+                    <div class="feature-icon mx-auto mb-4">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Training</h3>
+                    <p class="text-gray-600">Comprehensive staff training on system operation</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 text-center">
+                    <div class="feature-icon mx-auto mb-4">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">24/7 Support</h3>
+                    <p class="text-gray-600">Round-the-clock technical support for emergencies</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 text-center">
+                    <div class="feature-icon mx-auto mb-4">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Maintenance</h3>
+                    <p class="text-gray-600">Regular maintenance and software updates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-red-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Upgrade Your Gaming Setup?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Contact us today to discuss your betting terminal needs and get a customized solution</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contact.html" class="bg-white text-red-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-colors">
+                    Get Custom Quote
+                </a>
+                <a href="tel:+264818529722" class="bg-transparent border-2 border-white hover:bg-white hover:text-red-600 font-bold py-3 px-8 rounded-lg transition-all">
+                    Call Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="flex items-center mb-4">
+                        <img src="logo.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                        <span class="text-xl font-bold">Astute Technologies</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Your trusted partner for comprehensive technology solutions in Namibia.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/AstutenessTechnology" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="equipment.html" class="text-gray-400 hover:text-white transition-colors">Equipment</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="bingo-lucky6-package.html" class="text-gray-400 hover:text-white transition-colors">Bingo & Lucky 6 Software</a></li>
+                        <li><a href="point-of-sale.html" class="text-gray-400 hover:text-white transition-colors">POS Systems</a></li>
+                        <li><a href="it-support.html" class="text-gray-400 hover:text-white transition-colors">IT Support Services</a></li>
+                        <li><a href="acer-computer-box.html" class="text-gray-400 hover:text-white transition-colors">Acer Computer Box</a></li>
+                        <li><a href="betting-machine-terminal.html" class="text-red-400 transition-colors">Betting Terminals</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Emergency Support</h3>
+                    <div class="emergency-support rounded-lg p-4 mb-4">
+                        <div class="flex items-center mb-2">
+                            <span class="live-dot"></span>
+                            <span class="font-bold">LIVE 24/7 SUPPORT</span>
+                        </div>
+                        <a href="tel:+264818529722" class="block text-xl font-bold mb-1">+264 81 852 9722</a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-sm">WhatsApp: +264 81 852 9722</a>
+                    </div>
+                    <p class="text-gray-400 text-sm">Windhoek, Khomas Region, Namibia</p>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400 font-bold">&copy; 2025 Astute Technologies. All Rights Reserved.</p>
+                </div>
+                
+                <div class="flex items-center">
+                    <span class="text-gray-400 mr-2">Designed and Developed by</span>
+                    <a href="https://www.amateta.com" target="_blank" class="flex items-center text-white font-bold hover:text-red-400 transition-colors">
+                        <img src="amateta-logo-small.png" alt="Amateta" class="h-6 w-6 mr-2">
+                        www.amateta.com
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
-    <script src="../js/script.js"></script>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('#mobileMenu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Sticky Navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.sticky-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Terminal demo animation
+        function animateTerminal() {
+            const terminal = document.querySelector('.terminal-screen');
+            if (terminal) {
+                let lines = terminal.innerHTML.split('<br>');
+                terminal.innerHTML = '';
+                let currentLine = 0;
+                
+                function typeLine() {
+                    if (currentLine < lines.length) {
+                        terminal.innerHTML += (currentLine > 0 ? '<br>' : '') + lines[currentLine];
+                        currentLine++;
+                        terminal.scrollTop = terminal.scrollHeight;
+                        setTimeout(typeLine, 800);
+                    } else {
+                        // Restart animation after delay
+                        setTimeout(() => {
+                            terminal.innerHTML = '';
+                            currentLine = 0;
+                            typeLine();
+                        }, 5000);
+                    }
+                }
+                
+                typeLine();
+            }
+        }
+        
+        // Start terminal animation when page loads
+        document.addEventListener('DOMContentLoaded', animateTerminal);
+    </script>
 </body>
 </html>

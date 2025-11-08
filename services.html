@@ -30,7 +30,7 @@
             height: 50vh;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('services-hero.jpg');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/bg.webp');
             background-size: cover;
             background-position: center;
         }
@@ -251,6 +251,48 @@
             margin-right: 12px;
             color: var(--primary-red);
         }
+        
+        /* Tech Animation Background */
+        .tech-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .tech-icon {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatTech 20s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatTech {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Square image styling */
+        .square-image {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -304,15 +346,27 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
+        <!-- Tech Animation Background -->
+        <div class="tech-bg-animation" id="techAnimation">
+            <i class="fas fa-microchip tech-icon" style="left: 10%; animation-delay: 0s;"></i>
+            <i class="fas fa-server tech-icon" style="left: 30%; animation-delay: 4s;"></i>
+            <i class="fas fa-code tech-icon" style="left: 50%; animation-delay: 8s;"></i>
+            <i class="fas fa-network-wired tech-icon" style="left: 70%; animation-delay: 12s;"></i>
+            <i class="fas fa-database tech-icon" style="left: 90%; animation-delay: 16s;"></i>
+            
+            <i class="fas fa-cogs tech-icon" style="left: 20%; animation-delay: 2s; font-size: 30px;"></i>
+            <i class="fas fa-shield-alt tech-icon" style="left: 80%; animation-delay: 6s; font-size: 18px;"></i>
+        </div>
+        
         <div class="container mx-auto h-full flex items-center justify-center">
             <div class="hero-content">
                 <h1 class="text-4xl md:text-6xl font-bold mb-0 glow-text">Our Services</h1>
                 <p class="text-xl md:text-2xl mb-8">Complete Technology Solutions for Your Business</p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="/images/BG2.jpg" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105">
+                    <a href="#core-services" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105">
                         Core Services
                     </a>
-                    <a href="/images/BG2.jpg" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all">
+                    <a href="#equipment" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all">
                         Equipment Catalog
                     </a>
                 </div>
@@ -330,7 +384,7 @@
                 <!-- Service 1 - Bingo/Lucky 6 -->
                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="h-48 bg-red-100 flex items-center justify-center relative">
-                        <img src="/images/Bingo.webp" alt="Bingo / Lucky 6 Package" class="service-image">
+                        <img src="/images/Bingo.webp" alt="Bingo / Lucky 6 Package" class="service-image square-image">
                         <div class="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold py-1 px-3 rounded-full">
                             N$ 7,500
                         </div>
@@ -352,7 +406,7 @@
                 <!-- Service 2 - POS Systems -->
                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="h-48 bg-gray-200 flex items-center justify-center relative">
-                        <img src="/images/Point of sale.jpg" alt="Point of Sale System" class="service-image">
+                        <img src="/images/Point of sale.jpg" alt="Point of Sale System" class="service-image square-image">
                         <div class="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold py-1 px-3 rounded-full">
                             N$ 7,500+
                         </div>
@@ -374,7 +428,7 @@
                 <!-- Service 3 - IT Support -->
                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="h-48 bg-red-100 flex items-center justify-center relative">
-                        <img src="/images/BG2.jpg" alt="IT Support Services" class="service-image">
+                        <img src="/images/BG2.jpg" alt="IT Support Services" class="service-image square-image">
                         <div class="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold py-1 px-3 rounded-full">
                             N$ 2500+/month
                         </div>
@@ -396,7 +450,7 @@
                 <!-- Service 4 - Acer Computer Box -->
                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="h-48 bg-gray-200 flex items-center justify-center relative">
-                        <img src="acer-computer-box.jpg" alt="Acer Computer Box" class="service-image">
+                        <img src="acer-computer-box.jpg" alt="Acer Computer Box" class="service-image square-image">
                         <div class="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold py-1 px-3 rounded-full">
                             N$ 800+
                         </div>
@@ -418,9 +472,9 @@
                 <!-- Service 5 - Betting Machine Terminal -->
                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="h-48 bg-red-100 flex items-center justify-center relative">
-                        <img src="betting-machine-terminal.jpg" alt="Betting Machine Terminal" class="service-image">
+                        <img src="/images/Bet.jpeg" alt="Betting Machine Terminal" class="service-image square-image">
                         <div class="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold py-1 px-3 rounded-full">
-                            N$ 2,000+
+                            N$ 26,000+
                         </div>
                     </div>
                     <div class="p-6">
@@ -440,7 +494,7 @@
                 <!-- Service 6 - Dell Computer Box -->
                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="h-48 bg-gray-200 flex items-center justify-center relative">
-                        <img src="dell-computer-box.jpg" alt="Dell Computer Box" class="service-image">
+                        <img src="/images/dell.avif" alt="Dell Computer Box" class="service-image square-image">
                         <div class="absolute top-4 right-4 bg-red-600 text-white text-sm font-bold py-1 px-3 rounded-full">
                             N$ 900+
                         </div>

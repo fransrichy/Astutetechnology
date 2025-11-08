@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Portfolio - Astute Technologies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-red: #dc2626;
+            --dark-gray: #374151;
+            --light-gray: #f3f4f6;
+            --accent-black: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: white;
+        }
+        
+        .hero-section {
+            height: 50vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/bg.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.7);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(17, 24, 39, 0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--primary-red);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .emergency-support {
+            background: linear-gradient(135deg, var(--primary-red), #b91c1c);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+        
+        .emergency-support:hover {
+            background: linear-gradient(135deg, #b91c1c, var(--primary-red));
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+        }
+        
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .footer-logo {
+            filter: brightness(0) invert(1);
+        }
+        
+        .partner-logo {
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Logo styling */
+        .logo-img {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            transition: all 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            filter: drop-shadow(0 6px 10px rgba(220, 38, 38, 0.3));
+            transform: scale(1.05);
+        }
+        
+        /* Service detail styling */
+        .service-detail {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .service-detail:hover {
+            border-left: 4px solid var(--primary-red);
+            transform: translateX(5px);
+        }
+        
+        /* Old WhatsApp icon styling */
+        .whatsapp-icon {
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .whatsapp-icon:before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid #25D366;
+            border-radius: 50%;
+            animation: pulse-ring 1.5s infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        /* Portfolio specific styling */
+        .portfolio-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--dark-gray);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+        }
+        
+        .portfolio-item {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(220, 38, 38, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .square-image {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+        
+        /* Tech Animation Background */
+        .tech-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .tech-icon {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatTech 20s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatTech {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/264818529722" target="_blank" class="fixed bottom-6 right-6 z-50 pulse">
+        <div class="whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </a>
+    
+    <!-- Navigation -->
+    <nav class="sticky-nav bg-gray-900 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Company Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="./images/A STUTE LOGO FINAL Trasparent.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                </a>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium transition-colors">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium transition-colors">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium transition-colors">Equipment</a>
+                <a href="portfolio.html" class="text-red-400 font-medium transition-colors">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium transition-colors">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium transition-colors">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium transition-colors">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden absolute top-full left-0 w-full bg-gray-900 shadow-lg py-4 hidden">
+            <div class="container mx-auto px-4 flex flex-col space-y-4">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium py-2">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium py-2">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium py-2">Equipment</a>
+                <a href="portfolio.html" class="text-red-400 font-medium py-2">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium py-2">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium py-2">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Tech Animation Background -->
+        <div class="tech-bg-animation" id="techAnimation">
+            <i class="fas fa-microchip tech-icon" style="left: 10%; animation-delay: 0s;"></i>
+            <i class="fas fa-server tech-icon" style="left: 30%; animation-delay: 4s;"></i>
+            <i class="fas fa-code tech-icon" style="left: 50%; animation-delay: 8s;"></i>
+            <i class="fas fa-network-wired tech-icon" style="left: 70%; animation-delay: 12s;"></i>
+            <i class="fas fa-database tech-icon" style="left: 90%; animation-delay: 16s;"></i>
+            
+            <i class="fas fa-cogs tech-icon" style="left: 20%; animation-delay: 2s; font-size: 30px;"></i>
+            <i class="fas fa-shield-alt tech-icon" style="left: 80%; animation-delay: 6s; font-size: 18px;"></i>
+        </div>
+        
+        <div class="container mx-auto h-full flex items-center justify-center">
+            <div class="hero-content">
+                <h1 class="text-4xl md:text-6xl font-bold mb-0 glow-text">Our Portfolio</h1>
+                <p class="text-xl md:text-2xl mb-8">Showcasing Our Technology Solutions & Success Stories</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#projects" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105">
+                        View Projects
+                    </a>
+                    <a href="contact.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all">
+                        Start Your Project
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Stats Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-red-600 mb-2">50+</div>
+                    <div class="text-gray-600 font-medium">Projects Completed</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-red-600 mb-2">35+</div>
+                    <div class="text-gray-600 font-medium">Happy Clients</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-red-600 mb-2">5+</div>
+                    <div class="text-gray-600 font-medium">Years Experience</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-bold text-red-600 mb-2">24/7</div>
+                    <div class="text-gray-600 font-medium">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Filter Section -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Our Projects</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Explore our successful technology implementations across various industries</p>
+            
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="gaming">Gaming Solutions</button>
+                <button class="filter-btn" data-filter="pos">POS Systems</button>
+                <button class="filter-btn" data-filter="it">IT Infrastructure</button>
+                <button class="filter-btn" data-filter="retail">Retail Solutions</button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 - Gaming -->
+                <div class="portfolio-item" data-category="gaming">
+                    <div class="relative overflow-hidden">
+                        <img src="/images/casino-project.jpg" alt="Lucky 6 Gaming Establishment" class="portfolio-image square-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="text-white text-xl font-bold mb-2">Lucky 6 Gaming Establishment</h3>
+                            <p class="text-white mb-4">Complete Bingo software implementation with 50 terminals</p>
+                            <a href="#" class="bg-white text-red-600 font-bold py-2 px-6 rounded-lg transition-colors">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Lucky 6 Gaming Establishment</h3>
+                        <p class="text-gray-600 mb-4">Complete Bingo software implementation with 50 terminals, serving 200+ customers daily.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-red-600 font-bold">Gaming Solutions</span>
+                            <span class="text-gray-500">Completed: 2023</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 - POS -->
+                <div class="portfolio-item" data-category="pos">
+                    <div class="relative overflow-hidden">
+                        <img src="/images/retail-project.jpg" alt="City Mart POS System" class="portfolio-image square-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="text-white text-xl font-bold mb-2">City Mart POS System</h3>
+                            <p class="text-white mb-4">POS system implementation across 12 locations</p>
+                            <a href="#" class="bg-white text-red-600 font-bold py-2 px-6 rounded-lg transition-colors">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">City Mart POS System</h3>
+                        <p class="text-gray-600 mb-4">POS system implementation across 12 locations with centralized inventory management.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-red-600 font-bold">POS Systems</span>
+                            <span class="text-gray-500">Completed: 2023</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 - IT Infrastructure -->
+                <div class="portfolio-item" data-category="it">
+                    <div class="relative overflow-hidden">
+                        <img src="/images/corporate-project.jpg" alt="Namibia Holdings IT Setup" class="portfolio-image square-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="text-white text-xl font-bold mb-2">Namibia Holdings IT Setup</h3>
+                            <p class="text-white mb-4">Complete IT infrastructure setup and support</p>
+                            <a href="#" class="bg-white text-red-600 font-bold py-2 px-6 rounded-lg transition-colors">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Namibia Holdings IT Setup</h3>
+                        <p class="text-gray-600 mb-4">Complete IT infrastructure setup for corporate office with 75 workstations.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-red-600 font-bold">IT Infrastructure</span>
+                            <span class="text-gray-500">Completed: 2022</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 - Retail -->
+                <div class="portfolio-item" data-category="retail">
+                    <div class="relative overflow-hidden">
+                        <img src="/images/retail-project-2.jpg" alt="QuickStop Convenience Store" class="portfolio-image square-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="text-white text-xl font-bold mb-2">QuickStop Convenience Store</h3>
+                            <p class="text-white mb-4">Retail POS and inventory management system</p>
+                            <a href="#" class="bg-white text-red-600 font-bold py-2 px-6 rounded-lg transition-colors">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">QuickStop Convenience Store</h3>
+                        <p class="text-gray-600 mb-4">Retail POS and inventory management system with barcode scanning.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-red-600 font-bold">Retail Solutions</span>
+                            <span class="text-gray-500">Completed: 2023</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 - Gaming -->
+                <div class="portfolio-item" data-category="gaming">
+                    <div class="relative overflow-hidden">
+                        <img src="/images/gaming-project-2.jpg" alt="Bingo Palace" class="portfolio-image square-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="text-white text-xl font-bold mb-2">Bingo Palace</h3>
+                            <p class="text-white mb-4">Complete gaming setup with 30 terminals</p>
+                            <a href="#" class="bg-white text-red-600 font-bold py-2 px-6 rounded-lg transition-colors">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Bingo Palace</h3>
+                        <p class="text-gray-600 mb-4">Complete gaming setup with 30 terminals and secure payment processing.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-red-600 font-bold">Gaming Solutions</span>
+                            <span class="text-gray-500">Completed: 2022</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 - IT Infrastructure -->
+                <div class="portfolio-item" data-category="it">
+                    <div class="relative overflow-hidden">
+                        <img src="/images/it-project.jpg" alt="Tech Solutions Network" class="portfolio-image square-image">
+                        <div class="portfolio-overlay">
+                            <h3 class="text-white text-xl font-bold mb-2">Tech Solutions Network</h3>
+                            <p class="text-white mb-4">Network infrastructure for growing business</p>
+                            <a href="#" class="bg-white text-red-600 font-bold py-2 px-6 rounded-lg transition-colors">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Tech Solutions Network</h3>
+                        <p class="text-gray-600 mb-4">Network infrastructure setup with secure Wi-Fi and server implementation.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-red-600 font-bold">IT Infrastructure</span>
+                            <span class="text-gray-500">Completed: 2022</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Client Testimonials</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">What our clients say about our services and solutions</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-bold mr-4">
+                            JM
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">John Mbekwa</h4>
+                            <p class="text-gray-600 text-sm">Owner, Lucky 6 Gaming</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Astute Technologies transformed our gaming business with their Bingo software. The system is reliable, user-friendly, and their support team is always available when we need help."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-bold mr-4">
+                            SM
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Sarah Mbangu</h4>
+                            <p class="text-gray-600 text-sm">Manager, City Mart</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The POS system from Astute Technologies has streamlined our operations across all 12 locations. Inventory management is now efficient, and sales tracking is accurate."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-bold mr-4">
+                            TK
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Thomas Kambonde</h4>
+                            <p class="text-gray-600 text-sm">CEO, Namibia Holdings</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The IT infrastructure setup by Astute Technologies has been flawless. Their team was professional, efficient, and the after-sales support is exceptional."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Featured Case Studies</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">In-depth look at some of our most impactful projects</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Case Study 1 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                    <div class="h-64 bg-red-600 flex items-center justify-center">
+                        <img src="/images/casino-project.jpg" alt="Lucky 6 Case Study" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Lucky 6 Gaming Transformation</h3>
+                        <p class="text-gray-600 mb-4">How we helped a local gaming establishment increase revenue by 45% with our customized Bingo software solution.</p>
+                        <ul class="list-disc pl-5 text-gray-600 mb-6">
+                            <li>50 terminal setup with centralized management</li>
+                            <li>Real-time reporting and analytics</li>
+                            <li>Secure payment processing integration</li>
+                            <li>24/7 technical support</li>
+                        </ul>
+                        <a href="#" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-colors inline-flex items-center">
+                            Read Full Case Study <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Case Study 2 -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md">
+                    <div class="h-64 bg-gray-700 flex items-center justify-center">
+                        <img src="/images/retail-project.jpg" alt="City Mart Case Study" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">City Mart Retail Revolution</h3>
+                        <p class="text-gray-600 mb-4">Implementing a multi-location POS system that reduced inventory discrepancies by 80% and improved customer service.</p>
+                        <ul class="list-disc pl-5 text-gray-600 mb-6">
+                            <li>12 location integration</li>
+                            <li>Centralized inventory management</li>
+                            <li>Automated reporting system</li>
+                            <li>Staff training and ongoing support</li>
+                        </ul>
+                        <a href="#" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-colors inline-flex items-center">
+                            Read Full Case Study <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-red-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Project?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Let's discuss how our technology solutions can transform your business</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contact.html" class="bg-white text-red-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-colors">
+                    Get In Touch
+                </a>
+                <a href="tel:+264818529722" class="bg-transparent border-2 border-white hover:bg-white hover:text-red-600 font-bold py-3 px-8 rounded-lg transition-all">
+                    Call Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="flex items-center mb-4">
+                        <img src="logo.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                        <span class="text-xl font-bold">Astute Technologies</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Your trusted partner for comprehensive technology solutions in Namibia.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/AstutenessTechnology" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="equipment.html" class="text-gray-400 hover:text-white transition-colors">Equipment</a></li>
+                        <li><a href="portfolio.html" class="text-red-400 transition-colors">Portfolio</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="bingo-lucky6-package.html" class="text-gray-400 hover:text-white transition-colors">Bingo & Lucky 6 Software</a></li>
+                        <li><a href="point-of-sale.html" class="text-gray-400 hover:text-white transition-colors">POS Systems</a></li>
+                        <li><a href="it-support.html" class="text-gray-400 hover:text-white transition-colors">IT Support Services</a></li>
+                        <li><a href="acer-computer-box.html" class="text-gray-400 hover:text-white transition-colors">Acer Computer Box</a></li>
+                        <li><a href="betting-machine-terminal.html" class="text-gray-400 hover:text-white transition-colors">Betting Terminals</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Emergency Support</h3>
+                    <div class="emergency-support rounded-lg p-4 mb-4">
+                        <div class="flex items-center mb-2">
+                            <span class="live-dot"></span>
+                            <span class="font-bold">LIVE 24/7 SUPPORT</span>
+                        </div>
+                        <a href="tel:+264818529722" class="block text-xl font-bold mb-1">+264 81 852 9722</a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-sm">WhatsApp: +264 81 852 9722</a>
+                    </div>
+                    <p class="text-gray-400 text-sm">Windhoek, Khomas Region, Namibia</p>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400 font-bold">&copy; 2025 Astute Technologies. All Rights Reserved.</p>
+                </div>
+                
+                <div class="flex items-center">
+                    <span class="text-gray-400 mr-2">Designed and Developed by</span>
+                    <a href="https://www.amateta.com" target="_blank" class="flex items-center text-white font-bold hover:text-red-400 transition-colors">
+                        <img src="amateta-logo-small.png" alt="Amateta" class="h-6 w-6 mr-2">
+                        www.amateta.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('#mobileMenu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Sticky Navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.sticky-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Portfolio Filter Functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Get filter value
+                const filterValue = button.getAttribute('data-filter');
+                
+                // Show/hide portfolio items based on filter
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

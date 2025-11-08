@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Astute Technologies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-red: #dc2626;
+            --dark-gray: #374151;
+            --light-gray: #f3f4f6;
+            --accent-black: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: white;
+        }
+        
+        .hero-section {
+            height: 50vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/bg.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.7);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(17, 24, 39, 0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--primary-red);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .emergency-support {
+            background: linear-gradient(135deg, var(--primary-red), #b91c1c);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+        
+        .emergency-support:hover {
+            background: linear-gradient(135deg, #b91c1c, var(--primary-red));
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+        }
+        
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .footer-logo {
+            filter: brightness(0) invert(1);
+        }
+        
+        .partner-logo {
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Logo styling */
+        .logo-img {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            transition: all 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            filter: drop-shadow(0 6px 10px rgba(220, 38, 38, 0.3));
+            transform: scale(1.05);
+        }
+        
+        /* Service detail styling */
+        .service-detail {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .service-detail:hover {
+            border-left: 4px solid var(--primary-red);
+            transform: translateX(5px);
+        }
+        
+        /* Old WhatsApp icon styling */
+        .whatsapp-icon {
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .whatsapp-icon:before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid #25D366;
+            border-radius: 50%;
+            animation: pulse-ring 1.5s infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        /* Contact specific styling */
+        .contact-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: #fee2e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary-red);
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+        
+        .square-image {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+        
+        /* Tech Animation Background */
+        .tech-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .tech-icon {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatTech 20s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatTech {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/264818529722" target="_blank" class="fixed bottom-6 right-6 z-50 pulse">
+        <div class="whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </a>
+    
+    <!-- Navigation -->
+    <nav class="sticky-nav bg-gray-900 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Company Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="./images/A STUTE LOGO FINAL Trasparent.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                </a>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium transition-colors">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium transition-colors">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium transition-colors">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium transition-colors">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium transition-colors">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium transition-colors">Collaboration</a>
+                <a href="contact.html" class="text-red-400 font-medium transition-colors">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden absolute top-full left-0 w-full bg-gray-900 shadow-lg py-4 hidden">
+            <div class="container mx-auto px-4 flex flex-col space-y-4">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium py-2">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium py-2">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium py-2">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium py-2">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium py-2">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium py-2">Collaboration</a>
+                <a href="contact.html" class="text-red-400 font-medium py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Tech Animation Background -->
+        <div class="tech-bg-animation" id="techAnimation">
+            <i class="fas fa-microchip tech-icon" style="left: 10%; animation-delay: 0s;"></i>
+            <i class="fas fa-server tech-icon" style="left: 30%; animation-delay: 4s;"></i>
+            <i class="fas fa-code tech-icon" style="left: 50%; animation-delay: 8s;"></i>
+            <i class="fas fa-network-wired tech-icon" style="left: 70%; animation-delay: 12s;"></i>
+            <i class="fas fa-database tech-icon" style="left: 90%; animation-delay: 16s;"></i>
+            
+            <i class="fas fa-cogs tech-icon" style="left: 20%; animation-delay: 2s; font-size: 30px;"></i>
+            <i class="fas fa-shield-alt tech-icon" style="left: 80%; animation-delay: 6s; font-size: 18px;"></i>
+        </div>
+        
+        <div class="container mx-auto h-full flex items-center justify-center">
+            <div class="hero-content">
+                <h1 class="text-4xl md:text-6xl font-bold mb-0 glow-text">Contact Us</h1>
+                <p class="text-xl md:text-2xl mb-8">Get in Touch for Technology Solutions</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#contact-form" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105">
+                        Get a Quote
+                    </a>
+                    <a href="tel:+264818529722" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all">
+                        Call Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Get In Touch</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Multiple ways to reach us for your technology needs</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="contact-card bg-white rounded-xl p-8 text-center border border-gray-200">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Call Us</h3>
+                    <p class="text-gray-600 mb-4">Speak directly with our technology experts</p>
+                    <a href="tel:+264818529722" class="text-red-600 font-bold text-lg hover:text-red-800 transition-colors">+264 81 852 9722</a>
+                </div>
+                
+                <div class="contact-card bg-white rounded-xl p-8 text-center border border-gray-200">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">WhatsApp</h3>
+                    <p class="text-gray-600 mb-4">Quick responses via WhatsApp</p>
+                    <a href="https://wa.me/264818529722" target="_blank" class="text-red-600 font-bold text-lg hover:text-red-800 transition-colors">+264 81 852 9722</a>
+                </div>
+                
+                <div class="contact-card bg-white rounded-xl p-8 text-center border border-gray-200">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Email Us</h3>
+                    <p class="text-gray-600 mb-4">Send us detailed inquiries</p>
+                    <a href="mailto:info@astutetechnologies.na" class="text-red-600 font-bold text-lg hover:text-red-800 transition-colors">info@astutetechnologies.na</a>
+                </div>
+                
+                <div class="contact-card bg-white rounded-xl p-8 text-center border border-gray-200">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Visit Us</h3>
+                    <p class="text-gray-600 mb-4">Our office location</p>
+                    <p class="text-red-600 font-bold text-lg">Windhoek, Khomas Region, Namibia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Quote Section -->
+    <section id="contact-form" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-xl shadow-md p-8">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Send Us a Message</h2>
+                    <p class="text-gray-600 mb-8">Fill out the form below and we'll get back to you within 24 hours</p>
+                    
+                    <div id="form-alert" class="alert" style="display: none;"></div>
+                    
+                    <form id="contactForm" action="submit_contact.php" method="POST">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label for="first_name" class="form-label">First Name *</label>
+                                <input type="text" id="first_name" name="first_name" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="last_name" class="form-label">Last Name *</label>
+                                <input type="text" id="last_name" name="last_name" class="form-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company" class="form-label">Company Name</label>
+                            <input type="text" id="company" name="company" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service" class="form-label">Service Interested In *</label>
+                            <select id="service" name="service" class="form-select" required>
+                                <option value="">Select a service</option>
+                                <option value="bingo-lucky6">Bingo & Lucky 6 Software</option>
+                                <option value="pos-systems">POS Systems</option>
+                                <option value="it-support">IT Support Services</option>
+                                <option value="computer-equipment">Computer Equipment</option>
+                                <option value="betting-terminals">Betting Terminals</option>
+                                <option value="networking">Networking Solutions</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget" class="form-label">Estimated Budget</label>
+                            <select id="budget" name="budget" class="form-select">
+                                <option value="">Select budget range</option>
+                                <option value="under-5000">Under N$ 5,000</option>
+                                <option value="5000-10000">N$ 5,000 - N$ 10,000</option>
+                                <option value="10000-25000">N$ 10,000 - N$ 25,000</option>
+                                <option value="25000-50000">N$ 25,000 - N$ 50,000</option>
+                                <option value="over-50000">Over N$ 50,000</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Project Details *</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="Please describe your project requirements, timeline, and any specific needs..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" id="submit-btn" class="submit-btn">
+                            <span id="btn-text">Send Message</span>
+                            <span id="btn-loading" class="hidden">
+                                <span class="spinner"></span> Sending...
+                            </span>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Enhanced Quote Information -->
+                <div>
+                    <div class="bg-white rounded-xl shadow-md p-8 mb-8">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Get a Detailed Quote</h2>
+                        <p class="text-gray-600 mb-6">Our enhanced quote system provides you with:</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-red-100 text-red-600 rounded-full p-2 mr-4">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Detailed Pricing</h4>
+                                    <p class="text-gray-600">Itemized breakdown of all costs including hardware, software, and services</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-red-100 text-red-600 rounded-full p-2 mr-4">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Implementation Timeline</h4>
+                                    <p class="text-gray-600">Clear project schedule with milestones and delivery dates</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-red-100 text-red-600 rounded-full p-2 mr-4">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Payment Options</h4>
+                                    <p class="text-gray-600">Flexible payment plans including upfront and installment options</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-red-100 text-red-600 rounded-full p-2 mr-4">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Support Package</h4>
+                                    <p class="text-gray-600">Comprehensive after-sales support and maintenance details</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Emergency Support -->
+                    <div class="emergency-support rounded-xl p-8 text-white">
+                        <div class="flex items-center mb-4">
+                            <span class="live-dot"></span>
+                            <span class="font-bold text-lg">EMERGENCY 24/7 SUPPORT</span>
+                        </div>
+                        <p class="mb-4">Need immediate assistance? Our support team is available round the clock for urgent technology issues.</p>
+                        <div class="space-y-2">
+                            <a href="tel:+264818529722" class="block text-xl font-bold">+264 81 852 9722</a>
+                            <a href="https://wa.me/264818529722" target="_blank" class="block text-lg">WhatsApp: +264 81 852 9722</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Frequently Asked Questions</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Quick answers to common questions about our services and process</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">How quickly can you respond to inquiries?</h3>
+                    <p class="text-gray-600">We typically respond to all inquiries within 2-4 hours during business hours. For urgent matters, our 24/7 support line is always available.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Do you offer payment plans?</h3>
+                    <p class="text-gray-600">Yes, we offer flexible payment options including upfront payments, installment plans, and pay-later options for qualifying businesses.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">What areas do you serve?</h3>
+                    <p class="text-gray-600">We primarily serve Windhoek and the Khomas Region, but we can arrange services throughout Namibia for larger projects.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Do you provide training?</h3>
+                    <p class="text-gray-600">Yes, comprehensive training is included with all our software and system implementations to ensure your team can use the technology effectively.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-red-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Contact us today to discuss your technology needs and get a customized solution</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact-form" class="bg-white text-red-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-colors">
+                    Get a Quote
+                </a>
+                <a href="tel:+264818529722" class="bg-transparent border-2 border-white hover:bg-white hover:text-red-600 font-bold py-3 px-8 rounded-lg transition-all">
+                    Call Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="flex items-center mb-4">
+                        <img src="logo.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                        <span class="text-xl font-bold">Astute Technologies</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Your trusted partner for comprehensive technology solutions in Namibia.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/AstutenessTechnology" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="equipment.html" class="text-gray-400 hover:text-white transition-colors">Equipment</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="contact.html" class="text-red-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="bingo-lucky6-package.html" class="text-gray-400 hover:text-white transition-colors">Bingo & Lucky 6 Software</a></li>
+                        <li><a href="point-of-sale.html" class="text-gray-400 hover:text-white transition-colors">POS Systems</a></li>
+                        <li><a href="it-support.html" class="text-gray-400 hover:text-white transition-colors">IT Support Services</a></li>
+                        <li><a href="acer-computer-box.html" class="text-gray-400 hover:text-white transition-colors">Acer Computer Box</a></li>
+                        <li><a href="betting-machine-terminal.html" class="text-gray-400 hover:text-white transition-colors">Betting Terminals</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Emergency Support</h3>
+                    <div class="emergency-support rounded-lg p-4 mb-4">
+                        <div class="flex items-center mb-2">
+                            <span class="live-dot"></span>
+                            <span class="font-bold">LIVE 24/7 SUPPORT</span>
+                        </div>
+                        <a href="tel:+264818529722" class="block text-xl font-bold mb-1">+264 81 852 9722</a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-sm">WhatsApp: +264 81 852 9722</a>
+                    </div>
+                    <p class="text-gray-400 text-sm">Windhoek, Khomas Region, Namibia</p>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400 font-bold">&copy; 2025 Astute Technologies. All Rights Reserved.</p>
+                </div>
+                
+                <div class="flex items-center">
+                    <span class="text-gray-400 mr-2">Designed and Developed by</span>
+                    <a href="https://www.amateta.com" target="_blank" class="flex items-center text-white font-bold hover:text-red-400 transition-colors">
+                        <img src="amateta-logo-small.png" alt="Amateta" class="h-6 w-6 mr-2">
+                        www.amateta.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('#mobileMenu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Sticky Navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.sticky-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Form Submission Handling
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnLoading = document.getElementById('btn-loading');
+        const formAlert = document.getElementById('form-alert');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.classList.add('hidden');
+            btnLoading.classList.remove('hidden');
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            
+            try {
+                const response = await fetch('submit_contact.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    formAlert.textContent = result.message || 'Thank you! Your message has been sent successfully. We will contact you within 24 hours.';
+                    formAlert.className = 'alert alert-success';
+                    formAlert.style.display = 'block';
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Scroll to alert
+                    formAlert.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Show error message
+                    formAlert.textContent = result.message || 'Sorry, there was an error sending your message. Please try again or contact us directly.';
+                    formAlert.className = 'alert alert-error';
+                    formAlert.style.display = 'block';
+                }
+            } catch (error) {
+                // Show error message
+                formAlert.textContent = 'Network error. Please check your connection and try again.';
+                formAlert.className = 'alert alert-error';
+                formAlert.style.display = 'block';
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnLoading.classList.add('hidden');
+                
+                // Hide alert after 10 seconds
+                setTimeout(() => {
+                    formAlert.style.display = 'none';
+                }, 10000);
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

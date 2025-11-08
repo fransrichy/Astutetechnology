@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaboration - Astute Technologies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-red: #dc2626;
+            --dark-gray: #374151;
+            --light-gray: #f3f4f6;
+            --accent-black: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: white;
+        }
+        
+        .hero-section {
+            height: 50vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/bg.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.7);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(17, 24, 39, 0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--primary-red);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .emergency-support {
+            background: linear-gradient(135deg, var(--primary-red), #b91c1c);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+        
+        .emergency-support:hover {
+            background: linear-gradient(135deg, #b91c1c, var(--primary-red));
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+        }
+        
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .footer-logo {
+            filter: brightness(0) invert(1);
+        }
+        
+        .partner-logo {
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Logo styling */
+        .logo-img {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            transition: all 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            filter: drop-shadow(0 6px 10px rgba(220, 38, 38, 0.3));
+            transform: scale(1.05);
+        }
+        
+        /* Service detail styling */
+        .service-detail {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .service-detail:hover {
+            border-left: 4px solid var(--primary-red);
+            transform: translateX(5px);
+        }
+        
+        /* Old WhatsApp icon styling */
+        .whatsapp-icon {
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .whatsapp-icon:before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid #25D366;
+            border-radius: 50%;
+            animation: pulse-ring 1.5s infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        /* Collaboration specific styling */
+        .collaboration-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .collaboration-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: #fee2e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary-red);
+            font-size: 2rem;
+        }
+        
+        .partner-highlight {
+            background: linear-gradient(135deg, #1e3a8a, #3730a3);
+            color: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: #fee2e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .square-image {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+        
+        /* Tech Animation Background */
+        .tech-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .tech-icon {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatTech 20s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatTech {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/264818529722" target="_blank" class="fixed bottom-6 right-6 z-50 pulse">
+        <div class="whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </a>
+    
+    <!-- Navigation -->
+    <nav class="sticky-nav bg-gray-900 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Company Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="./images/A STUTE LOGO FINAL Trasparent.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                </a>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium transition-colors">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium transition-colors">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium transition-colors">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium transition-colors">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium transition-colors">About Us</a>
+                <a href="collaboration.html" class="text-red-400 font-medium transition-colors">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium transition-colors">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden absolute top-full left-0 w-full bg-gray-900 shadow-lg py-4 hidden">
+            <div class="container mx-auto px-4 flex flex-col space-y-4">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium py-2">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium py-2">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium py-2">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium py-2">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium py-2">About Us</a>
+                <a href="collaboration.html" class="text-red-400 font-medium py-2">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Tech Animation Background -->
+        <div class="tech-bg-animation" id="techAnimation">
+            <i class="fas fa-microchip tech-icon" style="left: 10%; animation-delay: 0s;"></i>
+            <i class="fas fa-server tech-icon" style="left: 30%; animation-delay: 4s;"></i>
+            <i class="fas fa-code tech-icon" style="left: 50%; animation-delay: 8s;"></i>
+            <i class="fas fa-network-wired tech-icon" style="left: 70%; animation-delay: 12s;"></i>
+            <i class="fas fa-database tech-icon" style="left: 90%; animation-delay: 16s;"></i>
+            
+            <i class="fas fa-cogs tech-icon" style="left: 20%; animation-delay: 2s; font-size: 30px;"></i>
+            <i class="fas fa-shield-alt tech-icon" style="left: 80%; animation-delay: 6s; font-size: 18px;"></i>
+        </div>
+        
+        <div class="container mx-auto h-full flex items-center justify-center">
+            <div class="hero-content">
+                <h1 class="text-4xl md:text-6xl font-bold mb-0 glow-text">Strategic Collaboration</h1>
+                <p class="text-xl md:text-2xl mb-8">Partnering with Amateta Technology and Graphics for Comprehensive Solutions</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#amateta-partnership" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105">
+                        Our Partnership
+                    </a>
+                    <a href="contact.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all">
+                        Partner With Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Highlight Section -->
+    <section id="amateta-partnership" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="partner-highlight p-8 md:p-12 rounded-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Strategic Partnership with Amateta</h2>
+                        <p class="text-xl mb-6">We're proud to partner with <a href="https://www.amateta.com" target="_blank" class="text-red-300 underline font-bold">Amateta Technology and Graphics</a> to deliver cutting-edge technology solutions across Namibia and beyond.</p>
+                        <p class="text-lg mb-8">Together, we've completed numerous projects including custom software development, IT infrastructure setup, digital transformation initiatives, and comprehensive marketing campaigns for businesses of all sizes.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="bg-white text-blue-900 py-2 px-4 rounded-lg font-bold">
+                                Software Development
+                            </div>
+                            <div class="bg-white text-blue-900 py-2 px-4 rounded-lg font-bold">
+                                Graphics & Design
+                            </div>
+                            <div class="bg-white text-blue-900 py-2 px-4 rounded-lg font-bold">
+                                Marketing Support
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <a href="https://www.amateta.com" target="_blank">
+                            <img src="/images/amateta-logo.png" alt="Amateta Technology and Graphics" class="h-48 w-48 rounded-full object-cover partner-logo square-image border-4 border-white">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Combined Services Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Our Combined Expertise</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Leveraging the strengths of both companies to deliver comprehensive solutions</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="collaboration-card bg-white rounded-xl p-8 text-center">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Software Development</h3>
+                    <p class="text-gray-600 mb-6">Custom software solutions including Bingo/Lucky 6 systems, POS software, and business applications tailored to your specific needs.</p>
+                    <div class="flex justify-center space-x-4">
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded">Astute Tech</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">Amateta</span>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="collaboration-card bg-white rounded-xl p-8 text-center">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Graphics & Design</h3>
+                    <p class="text-gray-600 mb-6">Professional UI/UX design, branding, marketing materials, and visual content to enhance your digital presence and user experience.</p>
+                    <div class="flex justify-center">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">Amateta</span>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="collaboration-card bg-white rounded-xl p-8 text-center">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Marketing Support</h3>
+                    <p class="text-gray-600 mb-6">Comprehensive digital marketing strategies, social media management, and promotional campaigns to grow your business.</p>
+                    <div class="flex justify-center">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">Amateta</span>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="collaboration-card bg-white rounded-xl p-8 text-center">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">IT Infrastructure</h3>
+                    <p class="text-gray-600 mb-6">Complete IT setup including hardware installation, network configuration, and ongoing support services for businesses of all sizes.</p>
+                    <div class="flex justify-center">
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded">Astute Tech</span>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="collaboration-card bg-white rounded-xl p-8 text-center">
+                    <div class="service-icon">
+                        <i class="fas fa-cash-register"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">POS Systems</h3>
+                    <p class="text-gray-600 mb-6">Complete point of sale solutions with hardware, software, installation, and training for retail and hospitality businesses.</p>
+                    <div class="flex justify-center space-x-4">
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded">Astute Tech</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">Amateta</span>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="collaboration-card bg-white rounded-xl p-8 text-center">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">24/7 Support</h3>
+                    <p class="text-gray-600 mb-6">Round-the-clock technical support and maintenance services to ensure your systems run smoothly at all times.</p>
+                    <div class="flex justify-center space-x-4">
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded">Astute Tech</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">Amateta</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits of Collaboration Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Benefits of Our Collaboration</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Why partnering with both companies delivers superior results</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Comprehensive Solutions</h3>
+                    <div class="space-y-6">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-800 mb-2">End-to-End Service</h4>
+                                <p class="text-gray-600">From initial concept and design to implementation and ongoing support, we provide complete solutions under one partnership.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-800 mb-2">Seamless Integration</h4>
+                                <p class="text-gray-600">Our collaborative approach ensures that all components - from software to marketing - work together harmoniously.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-800 mb-2">Diverse Expertise</h4>
+                                <p class="text-gray-600">Access specialized skills in both technology implementation and creative design through a single point of contact.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Client Advantages</h3>
+                    <div class="space-y-6">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-800 mb-2">Faster Implementation</h4>
+                                <p class="text-gray-600">Our coordinated efforts reduce project timelines by eliminating communication barriers between different service providers.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-800 mb-2">Cost Efficiency</h4>
+                                <p class="text-gray-600">Bundled services and streamlined processes result in significant cost savings compared to working with multiple separate vendors.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-800 mb-2">Accountability</h4>
+                                <p class="text-gray-600">Single-source responsibility for your entire project ensures clear accountability and simplified project management.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Collaboration Success Stories</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Projects where our partnership delivered exceptional results</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Success Story 1 -->
+                <div class="collaboration-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-48 bg-red-600 flex items-center justify-center">
+                        <img src="/images/casino-project.jpg" alt="Lucky 6 Gaming" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Lucky 6 Gaming Establishment</h3>
+                        <p class="text-gray-600 mb-4">Complete gaming solution with custom software, attractive UI design, and marketing materials that increased customer engagement by 40%.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-red-600 font-bold">Software + Graphics</span>
+                            <span class="text-gray-500">2023</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Success Story 2 -->
+                <div class="collaboration-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-48 bg-gray-700 flex items-center justify-center">
+                        <img src="/images/retail-project.jpg" alt="City Mart" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">City Mart Retail Chain</h3>
+                        <p class="text-gray-600 mb-4">POS system implementation across 12 locations with custom branding, staff training materials, and promotional campaigns.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-red-600 font-bold">Full Solution</span>
+                            <span class="text-gray-500">2023</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Success Story 3 -->
+                <div class="collaboration-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-48 bg-red-600 flex items-center justify-center">
+                        <img src="/images/corporate-project.jpg" alt="Namibia Holdings" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Namibia Holdings</h3>
+                        <p class="text-gray-600 mb-4">IT infrastructure setup with custom software solutions, corporate branding, and digital transformation strategy implementation.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-red-600 font-bold">Tech + Marketing</span>
+                            <span class="text-gray-500">2022</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Process Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Our Collaboration Process</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">How we work together to deliver exceptional results for your business</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">1</div>
+                    <h3 class="text-lg font-bold mb-3 text-gray-800">Consultation</h3>
+                    <p class="text-gray-600">We meet to understand your business needs, challenges, and objectives from both technical and creative perspectives.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">2</div>
+                    <h3 class="text-lg font-bold mb-3 text-gray-800">Strategy Development</h3>
+                    <p class="text-gray-600">Our teams collaborate to create a comprehensive solution that addresses all aspects of your project requirements.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">3</div>
+                    <h3 class="text-lg font-bold mb-3 text-gray-800">Implementation</h3>
+                    <p class="text-gray-600">We execute the plan with coordinated efforts between technology implementation and creative development teams.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">4</div>
+                    <h3 class="text-lg font-bold mb-3 text-gray-800">Support & Growth</h3>
+                    <p class="text-gray-600">We provide ongoing support, maintenance, and optimization to ensure long-term success and business growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-red-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Leverage Our Partnership?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Get the combined power of technology expertise and creative excellence for your next project</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contact.html" class="bg-white text-red-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-colors">
+                    Start Your Project
+                </a>
+                <a href="tel:+264818529722" class="bg-transparent border-2 border-white hover:bg-white hover:text-red-600 font-bold py-3 px-8 rounded-lg transition-all">
+                    Call Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="flex items-center mb-4">
+                        <img src="logo.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                        <span class="text-xl font-bold">Astute Technologies</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Your trusted partner for comprehensive technology solutions in Namibia.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/AstutenessTechnology" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="equipment.html" class="text-gray-400 hover:text-white transition-colors">Equipment</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="collaboration.html" class="text-red-400 transition-colors">Collaboration</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="bingo-lucky6-package.html" class="text-gray-400 hover:text-white transition-colors">Bingo & Lucky 6 Software</a></li>
+                        <li><a href="point-of-sale.html" class="text-gray-400 hover:text-white transition-colors">POS Systems</a></li>
+                        <li><a href="it-support.html" class="text-gray-400 hover:text-white transition-colors">IT Support Services</a></li>
+                        <li><a href="acer-computer-box.html" class="text-gray-400 hover:text-white transition-colors">Acer Computer Box</a></li>
+                        <li><a href="betting-machine-terminal.html" class="text-gray-400 hover:text-white transition-colors">Betting Terminals</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Emergency Support</h3>
+                    <div class="emergency-support rounded-lg p-4 mb-4">
+                        <div class="flex items-center mb-2">
+                            <span class="live-dot"></span>
+                            <span class="font-bold">LIVE 24/7 SUPPORT</span>
+                        </div>
+                        <a href="tel:+264818529722" class="block text-xl font-bold mb-1">+264 81 852 9722</a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-sm">WhatsApp: +264 81 852 9722</a>
+                    </div>
+                    <p class="text-gray-400 text-sm">Windhoek, Khomas Region, Namibia</p>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400 font-bold">&copy; 2025 Astute Technologies. All Rights Reserved.</p>
+                </div>
+                
+                <div class="flex items-center">
+                    <span class="text-gray-400 mr-2">Designed and Developed by</span>
+                    <a href="https://www.amateta.com" target="_blank" class="flex items-center text-white font-bold hover:text-red-400 transition-colors">
+                        <img src="amateta-logo-small.png" alt="Amateta" class="h-6 w-6 mr-2">
+                        www.amateta.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('#mobileMenu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Sticky Navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.sticky-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

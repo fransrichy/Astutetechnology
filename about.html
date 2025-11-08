@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Astute Technologies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-red: #dc2626;
+            --dark-gray: #374151;
+            --light-gray: #f3f4f6;
+            --accent-black: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: white;
+        }
+        
+        .hero-section {
+            height: 50vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/bg.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.7);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(17, 24, 39, 0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--primary-red);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .emergency-support {
+            background: linear-gradient(135deg, var(--primary-red), #b91c1c);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+        
+        .emergency-support:hover {
+            background: linear-gradient(135deg, #b91c1c, var(--primary-red));
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+        }
+        
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .footer-logo {
+            filter: brightness(0) invert(1);
+        }
+        
+        .partner-logo {
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Logo styling */
+        .logo-img {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            transition: all 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            filter: drop-shadow(0 6px 10px rgba(220, 38, 38, 0.3));
+            transform: scale(1.05);
+        }
+        
+        /* Service detail styling */
+        .service-detail {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .service-detail:hover {
+            border-left: 4px solid var(--primary-red);
+            transform: translateX(5px);
+        }
+        
+        /* Old WhatsApp icon styling */
+        .whatsapp-icon {
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .whatsapp-icon:before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid #25D366;
+            border-radius: 50%;
+            animation: pulse-ring 1.5s infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        /* About Us specific styling */
+        .mission-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-member {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .team-image {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .value-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: #fee2e2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary-red);
+            font-size: 2rem;
+        }
+        
+        .square-image {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+        
+        /* Tech Animation Background */
+        .tech-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .tech-icon {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatTech 20s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatTech {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Timeline styling */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #e5e7eb;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -13px;
+            background-color: var(--primary-red);
+            border: 4px solid white;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/264818529722" target="_blank" class="fixed bottom-6 right-6 z-50 pulse">
+        <div class="whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </a>
+    
+    <!-- Navigation -->
+    <nav class="sticky-nav bg-gray-900 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Company Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="./images/A STUTE LOGO FINAL Trasparent.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                </a>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium transition-colors">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium transition-colors">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium transition-colors">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium transition-colors">Portfolio</a>
+                <a href="about.html" class="text-red-400 font-medium transition-colors">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium transition-colors">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium transition-colors">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden absolute top-full left-0 w-full bg-gray-900 shadow-lg py-4 hidden">
+            <div class="container mx-auto px-4 flex flex-col space-y-4">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium py-2">Home</a>
+                <a href="services.html" class="text-white hover:text-red-400 font-medium py-2">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium py-2">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium py-2">Portfolio</a>
+                <a href="about.html" class="text-red-400 font-medium py-2">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium py-2">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Tech Animation Background -->
+        <div class="tech-bg-animation" id="techAnimation">
+            <i class="fas fa-microchip tech-icon" style="left: 10%; animation-delay: 0s;"></i>
+            <i class="fas fa-server tech-icon" style="left: 30%; animation-delay: 4s;"></i>
+            <i class="fas fa-code tech-icon" style="left: 50%; animation-delay: 8s;"></i>
+            <i class="fas fa-network-wired tech-icon" style="left: 70%; animation-delay: 12s;"></i>
+            <i class="fas fa-database tech-icon" style="left: 90%; animation-delay: 16s;"></i>
+            
+            <i class="fas fa-cogs tech-icon" style="left: 20%; animation-delay: 2s; font-size: 30px;"></i>
+            <i class="fas fa-shield-alt tech-icon" style="left: 80%; animation-delay: 6s; font-size: 18px;"></i>
+        </div>
+        
+        <div class="container mx-auto h-full flex items-center justify-center">
+            <div class="hero-content">
+                <h1 class="text-4xl md:text-6xl font-bold mb-0 glow-text">About Us</h1>
+                <p class="text-xl md:text-2xl mb-8">Your Trusted Technology Partner in Namibia</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#our-story" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105">
+                        Our Story
+                    </a>
+                    <a href="contact.html" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Overview Section -->
+    <section id="our-story" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Who We Are</h2>
+                    <p class="text-gray-600 mb-6">Astute Technologies is a leading technology solutions provider based in Windhoek, Namibia. Founded with a vision to transform businesses through innovative technology, we have been serving clients across various industries for over 5 years.</p>
+                    <p class="text-gray-600 mb-6">Our team of experienced professionals is dedicated to delivering cutting-edge solutions that drive growth, efficiency, and competitive advantage for our clients. From gaming software to POS systems and IT infrastructure, we provide comprehensive technology services tailored to your specific needs.</p>
+                    <p class="text-gray-600 mb-8">We believe in building long-term partnerships with our clients, providing not just technology solutions but ongoing support and guidance to ensure your continued success in an increasingly digital world.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-red-600 text-white py-2 px-4 rounded-lg">
+                            <span class="font-bold">50+</span> Projects Completed
+                        </div>
+                        <div class="bg-red-600 text-white py-2 px-4 rounded-lg">
+                            <span class="font-bold">35+</span> Happy Clients
+                        </div>
+                        <div class="bg-red-600 text-white py-2 px-4 rounded-lg">
+                            <span class="font-bold">5+</span> Years Experience
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-xl p-8">
+                    <img src="/images/about-us-image.jpg" alt="Astute Technologies Team" class="w-full h-auto rounded-lg shadow-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Our Mission & Vision</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Driving technological innovation for business success in Namibia and beyond</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="mission-card bg-white rounded-xl p-8">
+                    <div class="value-icon bg-red-100 text-red-600 mb-6">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Our Mission</h3>
+                    <p class="text-gray-600 mb-4">To empower businesses with innovative, reliable, and affordable technology solutions that drive growth, efficiency, and competitive advantage.</p>
+                    <p class="text-gray-600">We strive to understand each client's unique challenges and deliver customized solutions that exceed expectations while providing exceptional ongoing support.</p>
+                </div>
+                
+                <div class="mission-card bg-white rounded-xl p-8">
+                    <div class="value-icon bg-red-100 text-red-600 mb-6">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Our Vision</h3>
+                    <p class="text-gray-600 mb-4">To be Namibia's leading technology partner, recognized for innovation, reliability, and exceptional customer service.</p>
+                    <p class="text-gray-600">We envision a future where every business in Namibia has access to world-class technology solutions that enable them to compete effectively in the global marketplace.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Our Values</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">The principles that guide everything we do</p>
+            
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Innovation</h3>
+                    <p class="text-gray-600">We continuously explore new technologies and approaches to deliver cutting-edge solutions that keep our clients ahead of the curve.</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Reliability</h3>
+                    <p class="text-gray-600">Our solutions are built to last, with robust architectures and comprehensive support to ensure uninterrupted operations.</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Partnership</h3>
+                    <p class="text-gray-600">We view our clients as partners, working collaboratively to understand their needs and deliver solutions that drive mutual success.</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Customer Focus</h3>
+                    <p class="text-gray-600">Our clients' success is our success. We prioritize their needs and go above and beyond to ensure complete satisfaction.</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Expertise</h3>
+                    <p class="text-gray-600">Our team consists of skilled professionals with deep technical knowledge and industry experience.</p>
+                </div>
+                
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Efficiency</h3>
+                    <p class="text-gray-600">We deliver solutions that streamline operations, reduce costs, and maximize productivity for our clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Timeline -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Our Journey</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">From humble beginnings to becoming a trusted technology partner</p>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">2020</h3>
+                        <p class="text-gray-600">Astute Technologies was founded with a focus on providing IT support services to small businesses in Windhoek.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">2021</h3>
+                        <p class="text-gray-600">Expanded our services to include custom software development, launching our first Bingo software solution for local gaming establishments.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">2022</h3>
+                        <p class="text-gray-600">Introduced POS systems to our portfolio and formed strategic partnerships with hardware suppliers including Dell and Acer.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">2023</h3>
+                        <p class="text-gray-600">Reached a milestone of 50+ completed projects and expanded our service area to cover the entire Khomas region.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">2024</h3>
+                        <p class="text-gray-600">Launched our comprehensive equipment catalog and strengthened our partnership with Amateta for enhanced service delivery.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">2025 & Beyond</h3>
+                        <p class="text-gray-600">Continuing to innovate and expand our service offerings while maintaining our commitment to exceptional customer service.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Meet Our Team</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">The dedicated professionals behind our success</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-member bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center">
+                        <img src="/images/team-member-1.jpg" alt="John Doe - Founder & CEO" class="team-image square-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">John Doe</h3>
+                        <p class="text-red-600 font-semibold mb-3">Founder & CEO</p>
+                        <p class="text-gray-600 mb-4">With over 10 years of experience in the technology industry, John leads our strategic direction and ensures we deliver exceptional value to our clients.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-red-600 transition-colors">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-red-600 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-member bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center">
+                        <img src="/images/team-member-2.jpg" alt="Sarah Smith - Technical Director" class="team-image square-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Sarah Smith</h3>
+                        <p class="text-red-600 font-semibold mb-3">Technical Director</p>
+                        <p class="text-gray-600 mb-4">Sarah oversees all technical operations and ensures our solutions meet the highest standards of quality, security, and performance.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-red-600 transition-colors">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-red-600 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-member bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="h-64 bg-gray-200 flex items-center justify-center">
+                        <img src="/images/team-member-3.jpg" alt="Michael Brown - Sales Manager" class="team-image square-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Michael Brown</h3>
+                        <p class="text-red-600 font-semibold mb-3">Sales Manager</p>
+                        <p class="text-gray-600 mb-4">Michael leads our sales team and works closely with clients to understand their needs and recommend the best technology solutions.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-red-600 transition-colors">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-red-600 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Why Choose Astute Technologies?</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">What sets us apart from other technology providers</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-xl p-6 text-center">
+                    <div class="value-icon bg-red-100 text-red-600 mx-auto mb-4">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">24/7 Support</h3>
+                    <p class="text-gray-600">Round-the-clock technical support to ensure your operations run smoothly at all times.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 text-center">
+                    <div class="value-icon bg-red-100 text-red-600 mx-auto mb-4">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Custom Solutions</h3>
+                    <p class="text-gray-600">Tailored technology solutions designed to meet your specific business requirements.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 text-center">
+                    <div class="value-icon bg-red-100 text-red-600 mx-auto mb-4">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Proven Expertise</h3>
+                    <p class="text-gray-600">Years of experience and a track record of successful implementations across various industries.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 text-center">
+                    <div class="value-icon bg-red-100 text-red-600 mx-auto mb-4">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Competitive Pricing</h3>
+                    <p class="text-gray-600">High-quality solutions at affordable prices with flexible payment options.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-red-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Work With Us?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Let's discuss how our technology solutions can transform your business</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="contact.html" class="bg-white text-red-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-colors">
+                    Get In Touch
+                </a>
+                <a href="tel:+264818529722" class="bg-transparent border-2 border-white hover:bg-white hover:text-red-600 font-bold py-3 px-8 rounded-lg transition-all">
+                    Call Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="flex items-center mb-4">
+                        <img src="logo.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                        <span class="text-xl font-bold">Astute Technologies</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Your trusted partner for comprehensive technology solutions in Namibia.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/AstutenessTechnology" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="equipment.html" class="text-gray-400 hover:text-white transition-colors">Equipment</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="about.html" class="text-red-400 transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="bingo-lucky6-package.html" class="text-gray-400 hover:text-white transition-colors">Bingo & Lucky 6 Software</a></li>
+                        <li><a href="point-of-sale.html" class="text-gray-400 hover:text-white transition-colors">POS Systems</a></li>
+                        <li><a href="it-support.html" class="text-gray-400 hover:text-white transition-colors">IT Support Services</a></li>
+                        <li><a href="acer-computer-box.html" class="text-gray-400 hover:text-white transition-colors">Acer Computer Box</a></li>
+                        <li><a href="betting-machine-terminal.html" class="text-gray-400 hover:text-white transition-colors">Betting Terminals</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Emergency Support</h3>
+                    <div class="emergency-support rounded-lg p-4 mb-4">
+                        <div class="flex items-center mb-2">
+                            <span class="live-dot"></span>
+                            <span class="font-bold">LIVE 24/7 SUPPORT</span>
+                        </div>
+                        <a href="tel:+264818529722" class="block text-xl font-bold mb-1">+264 81 852 9722</a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-sm">WhatsApp: +264 81 852 9722</a>
+                    </div>
+                    <p class="text-gray-400 text-sm">Windhoek, Khomas Region, Namibia</p>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400 font-bold">&copy; 2025 Astute Technologies. All Rights Reserved.</p>
+                </div>
+                
+                <div class="flex items-center">
+                    <span class="text-gray-400 mr-2">Designed and Developed by</span>
+                    <a href="https://www.amateta.com" target="_blank" class="flex items-center text-white font-bold hover:text-red-400 transition-colors">
+                        <img src="amateta-logo-small.png" alt="Amateta" class="h-6 w-6 mr-2">
+                        www.amateta.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('#mobileMenu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Sticky Navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.sticky-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
