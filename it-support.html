@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bingo / Lucky 6 Package - Astute Technologies</title>
+    <title>IT Support Services - Astute Technologies</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -168,7 +168,7 @@
             left: -8px;
             right: -8px;
             bottom: -8px;
-            border: 2px solid rgb(255, 0, 0);
+            border: 2px solid #ff0000;
             border-radius: 50%;
             animation: pulse-ring 1.5s infinite;
         }
@@ -290,6 +290,33 @@
             transform: translateX(5px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
+        
+        /* Support plan styling */
+        .support-plan {
+            background: linear-gradient(135deg, #f3f4f6, #f3f4f6);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .support-plan:hover {
+            border-left: 4px solid var(--primary-red);
+            transform: translateX(5px);
+        }
+        
+        /* Emergency badge */
+        .emergency-badge {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-left: 8px;
+            animation: pulse 2s infinite;
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -345,48 +372,48 @@
     <section class="hero-section">
         <!-- Tech Animation Background -->
         <div class="tech-bg-animation" id="techAnimation">
-            <i class="fas fa-dice tech-icon" style="left: 10%; animation-delay: 0s;"></i>
-            <i class="fas fa-ticket-alt tech-icon" style="left: 30%; animation-delay: 4s;"></i>
-            <i class="fas fa-gamepad tech-icon" style="left: 50%; animation-delay: 8s;"></i>
-            <i class="fas fa-chart-line tech-icon" style="left: 70%; animation-delay: 12s;"></i>
+            <i class="fas fa-headset tech-icon" style="left: 10%; animation-delay: 0s;"></i>
+            <i class="fas fa-tools tech-icon" style="left: 30%; animation-delay: 4s;"></i>
+            <i class="fas fa-shield-alt tech-icon" style="left: 50%; animation-delay: 8s;"></i>
+            <i class="fas fa-network-wired tech-icon" style="left: 70%; animation-delay: 12s;"></i>
             <i class="fas fa-server tech-icon" style="left: 90%; animation-delay: 16s;"></i>
             
             <i class="fas fa-cogs tech-icon" style="left: 20%; animation-delay: 2s; font-size: 30px;"></i>
-            <i class="fas fa-shield-alt tech-icon" style="left: 80%; animation-delay: 6s; font-size: 18px;"></i>
+            <i class="fas fa-bug tech-icon" style="left: 80%; animation-delay: 6s; font-size: 18px;"></i>
         </div>
         
         <div class="container mx-auto h-full flex items-center justify-center">
             <div class="hero-content">
-                <h1 class="text-4xl md:text-6xl font-bold mb-0 glow-text">Bingo & Lucky 6 Package</h1>
-                <p class="text-xl md:text-2xl mb-8">Complete Gaming Solutions for Your Business</p>
+                <h1 class="text-4xl md:text-6xl font-bold mb-0 glow-text">IT Support Services</h1>
+                <p class="text-xl md:text-2xl mb-8">Professional IT Support for Businesses of All Sizes</p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#package-details" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105">
-                        Package Details
+                    <a href="#support-plans" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105">
+                        Support Plans
                     </a>
-                    <a href="#pricing" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all">
-                        Pricing Options
+                    <a href="#emergency" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all">
+                        Emergency Support
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Package Overview Section -->
+    <!-- Service Overview Section -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                     <div class="service-image-container">
-                        <img src="/images/Bingo.webp" alt="Bingo / Lucky 6 Package" class="service-image">
+                        <img src="/images/bg 2.jpg" alt="IT Support Services" class="service-image">
                     </div>
                 </div>
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Complete Gaming Solution</h2>
-                    <p class="text-gray-600 text-lg mb-6">Unlock the potential of your business with our comprehensive Bingo / Lucky 6 Package. This all-inclusive solution provides you with the necessary software and hardware to start your gaming operations swiftly and efficiently.</p>
-                    <p class="text-gray-600 text-lg mb-8">We offer flexible payment options to help you kickstart your earnings immediately. Don't miss this opportunity – your shop could be running today! Get your Bingo Software today and start generating revenue.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Professional IT Support</h2>
+                    <p class="text-gray-600 text-lg mb-6">Our comprehensive IT Support Services provide businesses with reliable technical assistance, maintenance, and troubleshooting to ensure your technology infrastructure runs smoothly and efficiently.</p>
+                    <p class="text-gray-600 text-lg mb-8">From routine maintenance to emergency repairs, our team of experienced technicians is available to address all your IT needs, minimizing downtime and maximizing productivity for your business.</p>
                     
                     <div class="flex flex-wrap gap-4">
-                        <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Bingo%20%2F%20Lucky%206%20Package." target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+                        <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20your%20IT%20Support%20Services." target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
                             <i class="fab fa-whatsapp mr-2"></i> Enquire on WhatsApp
                         </a>
                         <a href="services.html" class="bg-gray-800 hover:bg-black text-white font-bold py-3 px-8 rounded-lg transition-colors">
@@ -398,288 +425,386 @@
         </div>
     </section>
 
-    <!-- Package Details Section -->
-    <section id="package-details" class="py-16 bg-gray-50">
+    <!-- Services Offered Section -->
+    <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Package Includes</h2>
-            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Everything you need to start your gaming business</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Our IT Support Services</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Comprehensive technical support for all your business needs</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Item 1 -->
+                <!-- Service 1 -->
                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="h-48 bg-red-100 flex items-center justify-center">
+                        <i class="fas fa-tools text-red-600 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Hardware Support</h3>
+                        <p class="text-gray-600 mb-4">Diagnosis, repair, and maintenance of computers, printers, servers, and networking equipment.</p>
+                        <ul class="text-sm text-gray-600">
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Computer repairs & upgrades</span>
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Printer setup & maintenance</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Network equipment configuration</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
                         <i class="fas fa-desktop text-red-600 text-6xl"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800">Complete Computer System</h3>
-                        <p class="text-gray-600">Refurbished Fullset Computer including Computer Box, Monitor Screen, Keyboard and Mouse for seamless operations.</p>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Software Support</h3>
+                        <p class="text-gray-600 mb-4">Installation, configuration, and troubleshooting of operating systems and business applications.</p>
+                        <ul class="text-sm text-gray-600">
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>OS installation & updates</span>
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Software installation & configuration</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Virus & malware removal</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 
-                <!-- Item 2 -->
-                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center">
-                        <i class="fas fa-print text-red-600 text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800">High-Quality Receipt Printer</h3>
-                        <p class="text-gray-600">Professional receipt printer for easy and reliable ticket printing with crisp, clear results.</p>
-                    </div>
-                </div>
-                
-                <!-- Item 3 -->
-                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="h-48 bg-red-100 flex items-center justify-center">
-                        <i class="fas fa-barcode text-red-600 text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800">Efficient Barcode Scanner</h3>
-                        <p class="text-gray-600">Fast and accurate barcode scanner for quick operations and efficient customer service.</p>
-                    </div>
-                </div>
-                
-                <!-- Item 4 -->
-                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center">
-                        <i class="fas fa-dice text-red-600 text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800">Integrated Gaming Software</h3>
-                        <p class="text-gray-600">User-friendly Bingo / Lucky 6 Software with engaging gameplay and secure transaction processing.</p>
-                    </div>
-                </div>
-                
-                <!-- Item 5 -->
+                <!-- Service 3 -->
                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="h-48 bg-red-100 flex items-center justify-center">
-                        <i class="fas fa-headset text-red-600 text-6xl"></i>
+                        <i class="fas fa-network-wired text-red-600 text-6xl"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800">24/7 IT Support</h3>
-                        <p class="text-gray-600">Round-the-clock technical support to ensure uninterrupted operations and quick issue resolution.</p>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Network Support</h3>
+                        <p class="text-gray-600 mb-4">Setup, maintenance, and troubleshooting of wired and wireless networks for optimal performance.</p>
+                        <ul class="text-sm text-gray-600">
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Network setup & configuration</span>
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Wi-Fi optimization</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Internet connectivity issues</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 
-                <!-- Item 6 -->
+                <!-- Service 4 -->
                 <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
                     <div class="h-48 bg-gray-200 flex items-center justify-center">
-                        <i class="fas fa-graduation-cap text-red-600 text-6xl"></i>
+                        <i class="fas fa-database text-red-600 text-6xl"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800">Complete Training</h3>
-                        <p class="text-gray-600">Comprehensive training for your staff to ensure smooth operation of all systems and software.</p>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Data Management</h3>
+                        <p class="text-gray-600 mb-4">Data backup, recovery, and migration services to protect your valuable business information.</p>
+                        <ul class="text-sm text-gray-600">
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Data backup solutions</span>
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Data recovery services</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>System migration</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-48 bg-red-100 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-red-600 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Security Services</h3>
+                        <p class="text-gray-600 mb-4">Implementation of security measures to protect your systems from threats and vulnerabilities.</p>
+                        <ul class="text-sm text-gray-600">
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Antivirus installation</span>
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Firewall configuration</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Security audits</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-cloud text-red-600 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Cloud Services</h3>
+                        <p class="text-gray-600 mb-4">Setup and management of cloud-based solutions for enhanced accessibility and collaboration.</p>
+                        <ul class="text-sm text-gray-600">
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Cloud storage setup</span>
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Office 365 configuration</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Cloud backup solutions</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Software Features Section -->
-    <section class="py-16 bg-white">
+    <!-- Support Plans Section -->
+    <section id="support-plans" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Software Features</h2>
-            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Advanced features for optimal gaming experience</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Game Management</h3>
-                    <ul class="feature-list">
-                        <li class="text-gray-600 mb-4">Easy game setup and configuration</li>
-                        <li class="text-gray-600 mb-4">Automatic number generation with fairness verification</li>
-                        <li class="text-gray-600 mb-4">Real-time game monitoring and control</li>
-                        <li class="text-gray-600 mb-4">Multiple game sessions management</li>
-                        <li class="text-gray-600 mb-4">Customizable game rules and payout structures</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Business Operations</h3>
-                    <ul class="feature-list">
-                        <li class="text-gray-600 mb-4">Comprehensive sales and revenue tracking</li>
-                        <li class="text-gray-600 mb-4">Automated ticket validation and payout calculation</li>
-                        <li class="text-gray-600 mb-4">Detailed reporting and analytics dashboard</li>
-                        <li class="text-gray-600 mb-4">Secure user authentication and access control</li>
-                        <li class="text-gray-600 mb-4">Backup and recovery systems</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Flexible Pricing Options</h2>
-            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Choose the payment plan that works best for your business</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">IT Support Plans</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Flexible support options to match your business needs</p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Option 1 -->
+                <!-- Basic Plan -->
                 <div class="pricing-card bg-white rounded-xl p-8 text-center">
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Total Package</h3>
-                    <div class="text-4xl font-bold text-red-600 mb-6">N$ 7,500</div>
-                    <p class="text-gray-600 mb-6">Complete package with everything included</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Basic Support</h3>
+                    <div class="text-4xl font-bold text-red-600 mb-2">N$ 2,500<span class="text-lg text-gray-600">/month</span></div>
+                    <p class="text-gray-600 mb-6">Perfect for small businesses with basic IT needs</p>
                     <ul class="text-left mb-8">
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Full computer system</span>
+                            <span>Remote support during business hours</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Receipt printer & barcode scanner</span>
+                            <span>Basic troubleshooting</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Bingo/Lucky 6 software</span>
+                            <span>Software updates</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>24/7 IT support</span>
+                            <span>Virus removal</span>
                         </li>
                         <li class="flex items-center mb-3">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Complete training</span>
+                            <i class="fas fa-times text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">On-site visits</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-times text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">Emergency support</span>
                         </li>
                     </ul>
-                    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Bingo%20%2F%20Lucky%206%20Package%20(Full%20Payment)." target="_blank" class="bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg transition-colors w-full block">
+                    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Basic%20IT%20Support%20Plan." target="_blank" class="bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg transition-colors w-full block">
                         Choose This Plan
                     </a>
                 </div>
                 
-                <!-- Option 2 - Featured -->
+                <!-- Professional Plan -->
                 <div class="pricing-card featured bg-white rounded-xl p-8 text-center">
                     <div class="bg-red-600 text-white py-2 px-4 rounded-full text-sm font-bold mb-4 inline-block">MOST POPULAR</div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Pay Upfront</h3>
-                    <div class="text-4xl font-bold text-red-600 mb-6">N$ 5,500</div>
-                    <p class="text-gray-600 mb-6">Pay now and save N$ 2,000</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Professional Support</h3>
+                    <div class="text-4xl font-bold text-red-600 mb-2">N$ 4,500<span class="text-lg text-gray-600">/month</span></div>
+                    <p class="text-gray-600 mb-6">Ideal for growing businesses with moderate IT requirements</p>
                     <ul class="text-left mb-8">
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Full computer system</span>
+                            <span>All Basic Plan features</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Receipt printer & barcode scanner</span>
+                            <span>2 on-site visits per month</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Bingo/Lucky 6 software</span>
+                            <span>Extended support hours</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>24/7 IT support</span>
+                            <span>Network monitoring</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Complete training</span>
+                            <span>Preventive maintenance</span>
                         </li>
                         <li class="flex items-center mb-3">
-                            <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span class="font-bold">Save N$ 2,000</span>
+                            <i class="fas fa-times text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">24/7 emergency support</span>
                         </li>
                     </ul>
-                    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Bingo%20%2F%20Lucky%206%20Package%20(Upfront%20Payment)." target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors w-full block">
+                    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Professional%20IT%20Support%20Plan." target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors w-full block">
                         Choose This Plan
                     </a>
                 </div>
                 
-                <!-- Option 3 -->
+                <!-- Enterprise Plan -->
                 <div class="pricing-card bg-white rounded-xl p-8 text-center">
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Pay Later</h3>
-                    <div class="text-4xl font-bold text-red-600 mb-6">N$ 2,000</div>
-                    <p class="text-gray-600 mb-6">Start now, pay the balance later</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Enterprise Support</h3>
+                    <div class="text-4xl font-bold text-red-600 mb-2">N$ 7,500<span class="text-lg text-gray-600">/month</span></div>
+                    <p class="text-gray-600 mb-6">Comprehensive support for businesses with critical IT infrastructure</p>
                     <ul class="text-left mb-8">
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Full computer system</span>
+                            <span>All Professional Plan features</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Receipt printer & barcode scanner</span>
+                            <span>Unlimited on-site visits</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Bingo/Lucky 6 software</span>
+                            <span>24/7 emergency support</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>24/7 IT support</span>
+                            <span>Dedicated account manager</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span>Complete training</span>
+                            <span>Strategic IT planning</span>
                         </li>
                         <li class="flex items-center mb-3">
                             <i class="fas fa-check text-green-500 mr-2"></i>
-                            <span class="font-bold">Start earning immediately</span>
+                            <span>Priority response time</span>
                         </li>
                     </ul>
-                    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Bingo%20%2F%20Lucky%206%20Package%20(Pay%20Later%20Option)." target="_blank" class="bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg transition-colors w-full block">
+                    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Enterprise%20IT%20Support%20Plan." target="_blank" class="bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg transition-colors w-full block">
                         Choose This Plan
                     </a>
                 </div>
             </div>
             
             <div class="mt-12 text-center">
-                <p class="text-gray-600 mb-4">Need a custom payment plan? Contact us to discuss options.</p>
-                <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27d%20like%20to%20discuss%20a%20custom%20payment%20plan%20for%20the%20Bingo%20%2F%20Lucky%206%20Package." target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors inline-flex items-center">
+                <p class="text-gray-600 mb-4">Need a custom support plan? Contact us to discuss your specific requirements.</p>
+                <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27d%20like%20to%20discuss%20a%20custom%20IT%20Support%20plan%20for%20my%20business." target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors inline-flex items-center">
                     <i class="fas fa-comments mr-2"></i> Discuss Custom Plan
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="py-16 bg-white">
+    <!-- Emergency Support Section -->
+    <section id="emergency" class="py-16 bg-red-600 text-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Why Choose Our Package?</h2>
-            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Benefits that set our solution apart</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Emergency IT Support <span class="emergency-badge">24/7</span></h2>
+                    <p class="text-xl mb-6">Critical system failure? Don't let downtime cost your business.</p>
+                    <p class="text-lg mb-8">Our emergency support team is available 24/7 to address urgent IT issues that threaten your business operations. We provide rapid response to minimize disruption and get you back online quickly.</p>
+                    
+                    <div class="bg-white text-gray-800 rounded-xl p-6 mb-6">
+                        <h3 class="text-xl font-bold mb-4 text-red-600">Emergency Services Include:</h3>
+                        <ul class="feature-list">
+                            <li class="text-gray-700 mb-3">Server crashes and recovery</li>
+                            <li class="text-gray-700 mb-3">Network outages</li>
+                            <li class="text-gray-700 mb-3">Critical security breaches</li>
+                            <li class="text-gray-700 mb-3">Data loss emergencies</li>
+                            <li class="text-gray-700">Hardware failure</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="tel:+264818529722" class="bg-white text-red-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-colors">
+                            <i class="fas fa-phone mr-2"></i> Call Emergency Line
+                        </a>
+                        <a href="https://wa.me/264818529722?text=EMERGENCY%20IT%20SUPPORT%20NEEDED%20-%20Please%20contact%20me%20immediately." target="_blank" class="bg-transparent border-2 border-white hover:bg-white hover:text-red-600 font-bold py-3 px-8 rounded-lg transition-all">
+                            <i class="fab fa-whatsapp mr-2"></i> WhatsApp Emergency
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-white bg-opacity-10 rounded-xl p-8 inline-block">
+                        <i class="fas fa-headset text-white text-8xl mb-6"></i>
+                        <h3 class="text-2xl font-bold mb-4">24/7 Support Hotline</h3>
+                        <a href="tel:+264818529722" class="text-3xl font-bold block mb-4 hover:text-gray-200 transition-colors">+264 81 852 9722</a>
+                        <p class="text-lg">Available anytime for emergency IT support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Why Choose Our IT Support?</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Benefits that set our support services apart</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="benefit-card">
                     <div class="text-red-600 mb-4">
                         <i class="fas fa-bolt text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Quick Setup</h3>
-                    <p class="text-gray-600">Get your business up and running in no time with our streamlined installation process.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Rapid Response</h3>
+                    <p class="text-gray-600">Quick response times to minimize downtime and keep your business running smoothly.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-user-tie text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Expert Technicians</h3>
+                    <p class="text-gray-600">Certified professionals with extensive experience across various technologies and platforms.</p>
                 </div>
                 
                 <div class="benefit-card">
                     <div class="text-red-600 mb-4">
                         <i class="fas fa-shield-alt text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Reliable & Secure</h3>
-                    <p class="text-gray-600">Robust systems with built-in security features to protect your business and customer data.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Proactive Monitoring</h3>
+                    <p class="text-gray-600">Identify and resolve potential issues before they impact your business operations.</p>
                 </div>
                 
                 <div class="benefit-card">
                     <div class="text-red-600 mb-4">
                         <i class="fas fa-chart-line text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Proven Results</h3>
-                    <p class="text-gray-600">Trusted by businesses across Namibia with proven track record of success and profitability.</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="text-red-600 mb-4">
-                        <i class="fas fa-headset text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Ongoing Support</h3>
-                    <p class="text-gray-600">Continuous updates, maintenance, and 24/7 support to ensure your business runs smoothly.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Cost Effective</h3>
+                    <p class="text-gray-600">Predictable monthly costs instead of unexpected emergency repair bills.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 bg-red-600 text-white">
+    <section class="py-16 bg-white">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Gaming Business?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Contact us today to get your Bingo / Lucky 6 package and start generating revenue</p>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Secure Your IT Infrastructure?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Contact us today to discuss your IT support needs and get a customized solution</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20ready%20to%20get%20started%20with%20the%20Bingo%20%2F%20Lucky%206%20Package." target="_blank" class="bg-white text-red-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-colors">
-                    <i class="fab fa-whatsapp mr-2"></i> Get Started Now
+                <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20ready%20to%20discuss%20IT%20Support%20services%20for%20my%20business." target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+                    <i class="fab fa-whatsapp mr-2"></i> Get Support Now
                 </a>
-                <a href="tel:+264818529722" class="bg-transparent border-2 border-white hover:bg-white hover:text-red-600 font-bold py-3 px-8 rounded-lg transition-all">
+                <a href="tel:+264818529722" class="bg-gray-800 hover:bg-black text-white font-bold py-3 px-8 rounded-lg transition-all">
                     <i class="fas fa-phone mr-2"></i> Call Us Now
                 </a>
             </div>
@@ -693,7 +818,7 @@
                 <div>
                     <a href="index.html" class="flex items-center mb-4">
                         <img src="./images/astute-logo-final-transparent.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
-                        <span class="text-xl font-bold"></span>
+                        <span class="text-xl font-bold">Astute Technologies</span>
                     </a>
                     <p class="text-gray-400 mb-4">Your trusted partner for comprehensive technology solutions in Namibia.</p>
                     <div class="flex space-x-4">
@@ -723,9 +848,9 @@
                 <div>
                     <h3 class="text-lg font-bold mb-4">Our Services</h3>
                     <ul class="space-y-2">
-                        <li><a href="bingo-lucky6-package.html" class="text-red-400 transition-colors">Bingo & Lucky 6 Software</a></li>
+                        <li><a href="bingo-lucky6-package.html" class="text-gray-400 hover:text-white transition-colors">Bingo & Lucky 6 Software</a></li>
                         <li><a href="point-of-sale.html" class="text-gray-400 hover:text-white transition-colors">POS Systems</a></li>
-                        <li><a href="it-support.html" class="text-gray-400 hover:text-white transition-colors">IT Support Services</a></li>
+                        <li><a href="it-support.html" class="text-red-400 transition-colors">IT Support Services</a></li>
                         <li><a href="acer-computer-box.html" class="text-gray-400 hover:text-white transition-colors">Acer Computer Box</a></li>
                         <li><a href="betting-machine-terminal.html" class="text-gray-400 hover:text-white transition-colors">Betting Terminals</a></li>
                     </ul>

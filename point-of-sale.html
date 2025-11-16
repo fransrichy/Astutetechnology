@@ -4,73 +4,814 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Point of Sale Software and Hardware - Astute Technologies</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-red: #dc2626;
+            --dark-gray: #374151;
+            --light-gray: #f3f4f6;
+            --accent-black: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: white;
+        }
+        
+        .hero-section {
+            height: 40vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/bg.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(220, 38, 38, 0.7);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -15px); }
+            100% { transform: translate(0, -0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-scrolled {
+            background-color: rgba(17, 24, 39, 0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--primary-red);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .emergency-support {
+            background: linear-gradient(135deg, var(--primary-red), #b91c1c);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+        
+        .emergency-support:hover {
+            background: linear-gradient(135deg, #b91c1c, var(--primary-red));
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+        }
+        
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .footer-logo {
+            filter: brightness(0) invert(1);
+        }
+        
+        .partner-logo {
+            transition: all 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Logo styling */
+        .logo-img {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            transition: all 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            filter: drop-shadow(0 6px 10px rgba(220, 38, 38, 0.3));
+            transform: scale(1.05);
+        }
+        
+        /* Service detail styling */
+        .service-detail {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .service-detail:hover {
+            border-left: 4px solid var(--primary-red);
+            transform: translateX(5px);
+        }
+        
+        /* WhatsApp icon styling */
+        .whatsapp-icon {
+            background-color: #000000;
+            color: white;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .whatsapp-icon:before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid #ff0000;
+            border-radius: 50%;
+            animation: pulse-ring 1.5s infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        /* Service image styling - UPDATED */
+        .service-image-container {
+            height: 300px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f8fafc; /* Light background for empty space */
+            border-radius: 12px;
+        }
+        
+        .service-image {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain; /* Ensures entire image is visible */
+        }
+        
+        /* Tech Animation Background */
+        .tech-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .tech-icon {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatTech 20s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatTech {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Feature list styling */
+        .feature-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .feature-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-red);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Pricing card styling */
+        .pricing-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--primary-red);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.08);
+        }
+        
+        /* Benefit card styling */
+        .benefit-card {
+            background: linear-gradient(135deg, #fef2f2, #fef2f2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .benefit-card:hover {
+            border-left: 4px solid var(--primary-red);
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Business type styling */
+        .business-type {
+            background: linear-gradient(135deg, #f3f4f6, #f3f4f6);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .business-type:hover {
+            border-left: 4px solid var(--primary-red);
+            transform: translateX(5px);
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="../index.html"><img src="A STUTE LOGO FINAL Trasparent.png" alt="Astute Technologies Logo"></a>
+<body class="bg-white">
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/264818529722" target="_blank" class="fixed bottom-6 right-6 z-50 pulse">
+        <div class="whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+    </a>
+    
+    <!-- Navigation -->
+    <nav class="sticky-nav bg-gray-900 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Company Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="./images/astute-logo-final-transparent.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                </a>
             </div>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../index.html#services">Services</a></li>
-                <li><a href="../index.html#about">About Us</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium transition-colors">Home</a>
+                <a href="services.html" class="text-red-400 font-medium transition-colors">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium transition-colors">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium transition-colors">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium transition-colors">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium transition-colors">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium transition-colors">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden absolute top-full left-0 w-full bg-gray-900 shadow-lg py-4 hidden">
+            <div class="container mx-auto px-4 flex flex-col space-y-4">
+                <a href="index.html" class="text-white hover:text-red-400 font-medium py-2">Home</a>
+                <a href="services.html" class="text-red-400 font-medium py-2">Services</a>
+                <a href="equipment.html" class="text-white hover:text-red-400 font-medium py-2">Equipment</a>
+                <a href="portfolio.html" class="text-white hover:text-red-400 font-medium py-2">Portfolio</a>
+                <a href="about.html" class="text-white hover:text-red-400 font-medium py-2">About Us</a>
+                <a href="collaboration.html" class="text-white hover:text-red-400 font-medium py-2">Collaboration</a>
+                <a href="contact.html" class="text-white hover:text-red-400 font-medium py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Tech Animation Background -->
+        <div class="tech-bg-animation" id="techAnimation">
+            <i class="fas fa-cash-register tech-icon" style="left: 10%; animation-delay: 0s;"></i>
+            <i class="fas fa-barcode tech-icon" style="left: 30%; animation-delay: 4s;"></i>
+            <i class="fas fa-receipt tech-icon" style="left: 50%; animation-delay: 8s;"></i>
+            <i class="fas fa-chart-bar tech-icon" style="left: 70%; animation-delay: 12s;"></i>
+            <i class="fas fa-server tech-icon" style="left: 90%; animation-delay: 16s;"></i>
+            
+            <i class="fas fa-cogs tech-icon" style="left: 20%; animation-delay: 2s; font-size: 30px;"></i>
+            <i class="fas fa-shield-alt tech-icon" style="left: 80%; animation-delay: 6s; font-size: 18px;"></i>
+        </div>
+        
+        <div class="container mx-auto h-full flex items-center justify-center">
+            <div class="hero-content">
+                <h1 class="text-4xl md:text-6xl font-bold mb-0 glow-text">Point of Sale Systems</h1>
+                <p class="text-xl md:text-2xl mb-8">Complete POS Solutions for Your Business</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#package-details" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors transform hover:scale-105">
+                        Package Details
+                    </a>
+                    <a href="#features" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all">
+                        Key Features
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Package Overview Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="service-image-container">
+                        <img src="/images/point.jpeg" alt="Point of Sale System" class="service-image">
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Complete POS Solution</h2>
+                    <p class="text-gray-600 text-lg mb-6">Our Point of Sale (POS) Software and Hardware package is designed to streamline your business operations, making inventory management and customer transactions seamless and efficient.</p>
+                    <p class="text-gray-600 text-lg mb-8">This robust system runs offline, ensuring your business can operate smoothly even without an internet connection. Empower your business with our comprehensive POS solution, designed for efficiency, reliability, and ease of use.</p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20your%20Point%20of%20Sale%20system." target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors">
+                            <i class="fab fa-whatsapp mr-2"></i> Enquire on WhatsApp
+                        </a>
+                        <a href="services.html" class="bg-gray-800 hover:bg-black text-white font-bold py-3 px-8 rounded-lg transition-colors">
+                            <i class="fas fa-arrow-left mr-2"></i> Back to Services
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ideal For Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Ideal For These Businesses</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Perfect solution for various retail and service businesses</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div class="business-type text-center">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-shopping-cart text-3xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800">Mini-Super Markets</h3>
+                </div>
                 
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+                <div class="business-type text-center">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-tools text-3xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800">Hardware Stores</h3>
+                </div>
+                
+                <div class="business-type text-center">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-store text-3xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800">Grocery Shops</h3>
+                </div>
+                
+                <div class="business-type text-center">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-wine-bottle text-3xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800">Liquor Stores & Bars</h3>
+                </div>
+                
+                <div class="business-type text-center">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-horse text-3xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800">Tack Shops</h3>
+                </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </section>
 
-    <main>
-        <section class="service-page-content">
-            <h1>Point of Sale Software and Hardware</h1>
-            <img src="Point.jpeg" alt="Point of Sale System">
-            <p>Our Point of Sale (POS) Software and Hardware package is designed to streamline your business operations, making inventory management and customer transactions seamless and efficient. This robust system runs offline, ensuring your business can operate smoothly even without an internet connection.</p>
-            <h3>Ideal For:</h3>
-            <ul>
-                <li>Mini-Super Markets</li>
-                <li>Hardware Stores</li>
-                <li>Grocery Shops</li>
-                <li>Liquor Stores and Bars</li>
-                <li>Tack Shops</li>
-            </ul>
-            <h3>Features:</h3>
-            <ul>
-                <li>Simplified Stock Management for easy inventory control.</li>
-                <li>Organize your products into groups for better categorization.</li>
-                <li>Search Using Barcode, SKU and product name for quick product lookup.</li>
-                <li>View Items with detailed information.</li>
-                <li>Track Your Product History for insights into sales and movement.</li>
-                <li>Accurate Count of Inventory to prevent stockouts and overstocking.</li>
-            </ul>
-            <h3>Package Includes:</h3>
-            <ul>
-                <li>Refurbished Fullset Computer (Computer Box, Monitor Screen, Keyboard and Mouse).</li>
-                <li>Cash Drawer for secure cash handling.</li>
-                <li>High-Speed Receipt Printer for quick transaction records.</li>
-                <li>Ergonomic Barcode Scanner for efficient product scanning.</li>
-            </ul>
-            <p>Empower your business with our comprehensive POS solution, designed for efficiency, reliability, and ease of use.</p>
+    <!-- Package Details Section -->
+    <section id="package-details" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Package Includes</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Everything you need to run your business efficiently</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Item 1 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-48 bg-red-100 flex items-center justify-center">
+                        <i class="fas fa-desktop text-red-600 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Complete Computer System</h3>
+                        <p class="text-gray-600">Refurbished Fullset Computer including Computer Box, Monitor Screen, Keyboard and Mouse for seamless operations.</p>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-money-bill-wave text-red-600 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Cash Drawer</h3>
+                        <p class="text-gray-600">Secure cash drawer for organized and safe cash handling with multiple compartments.</p>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-48 bg-red-100 flex items-center justify-center">
+                        <i class="fas fa-print text-red-600 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">High-Speed Receipt Printer</h3>
+                        <p class="text-gray-600">Professional thermal receipt printer for quick transaction records with crisp, clear printing.</p>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="service-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-barcode text-red-600 text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Ergonomic Barcode Scanner</h3>
+                        <p class="text-gray-600">Fast and accurate barcode scanner for efficient product scanning and inventory management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20your%20Point%20of%20Sale%20system." target="_blank" class="btn">Enquire on WhatsApp</a>
-            <a href="../index.html#services" class="btn back-to-home">Back to Services</a>
-        </section>
-    </main>
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Software Features</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Advanced features for optimal business management</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Inventory Management</h3>
+                    <ul class="feature-list">
+                        <li class="text-gray-600 mb-4">Simplified Stock Management for easy inventory control</li>
+                        <li class="text-gray-600 mb-4">Organize your products into groups for better categorization</li>
+                        <li class="text-gray-600 mb-4">Search Using Barcode, SKU and product name for quick product lookup</li>
+                        <li class="text-gray-600 mb-4">View Items with detailed information</li>
+                        <li class="text-gray-600 mb-4">Track Your Product History for insights into sales and movement</li>
+                        <li class="text-gray-600 mb-4">Accurate Count of Inventory to prevent stockouts and overstocking</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Sales & Reporting</h3>
+                    <ul class="feature-list">
+                        <li class="text-gray-600 mb-4">Fast and intuitive sales transaction processing</li>
+                        <li class="text-gray-600 mb-4">Comprehensive sales reporting and analytics</li>
+                        <li class="text-gray-600 mb-4">Customer management with purchase history</li>
+                        <li class="text-gray-600 mb-4">Multiple payment method support (cash, card, mobile)</li>
+                        <li class="text-gray-600 mb-4">Tax calculation and reporting</li>
+                        <li class="text-gray-600 mb-4">Offline operation capability</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 Astute Technologies. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://www.facebook.com/AstutenessTechnology" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://wa.me/264818529722" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="YOUR_INSTAGRAM_LINK" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <!-- Pricing Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Pricing Options</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Flexible solutions to fit your business needs</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Standard Package -->
+                <div class="pricing-card bg-white rounded-xl p-8 text-center">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Standard Package</h3>
+                    <div class="text-4xl font-bold text-red-600 mb-6">N$ 7,500</div>
+                    <p class="text-gray-600 mb-6">Complete POS system with all essential components</p>
+                    <ul class="text-left mb-8">
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Full computer system</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Cash drawer</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Receipt printer</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Barcode scanner</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>POS software license</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Basic setup & training</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Standard%20POS%20Package." target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors w-full block">
+                        Choose This Package
+                    </a>
+                </div>
+                
+                <!-- Premium Package -->
+                <div class="pricing-card featured bg-white rounded-xl p-8 text-center">
+                    <div class="bg-red-600 text-white py-2 px-4 rounded-full text-sm font-bold mb-4 inline-block">RECOMMENDED</div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Premium Package</h3>
+                    <div class="text-4xl font-bold text-red-600 mb-6">N$ 10,500</div>
+                    <p class="text-gray-600 mb-6">Enhanced POS system with additional features</p>
+                    <ul class="text-left mb-8">
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>All Standard Package features</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Advanced inventory management</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Customer loyalty program</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Multi-location support</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Extended warranty</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Priority support</span>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20interested%20in%20the%20Premium%20POS%20Package." target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors w-full block">
+                        Choose This Package
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 mb-4">Need a custom solution? Contact us to discuss your specific requirements.</p>
+                <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27d%20like%20to%20discuss%20a%20custom%20POS%20solution%20for%20my%20business." target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors inline-flex items-center">
+                    <i class="fas fa-comments mr-2"></i> Discuss Custom Solution
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Why Choose Our POS System?</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Benefits that set our solution apart</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="benefit-card">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-bolt text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Quick Setup</h3>
+                    <p class="text-gray-600">Get your business up and running in no time with our streamlined installation process.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-wifi-slash text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Offline Operation</h3>
+                    <p class="text-gray-600">Continue operations even without internet connection, with automatic sync when online.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-chart-line text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Business Insights</h3>
+                    <p class="text-gray-600">Gain valuable insights into your sales, inventory, and customer behavior with detailed reports.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="text-red-600 mb-4">
+                        <i class="fas fa-headset text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Ongoing Support</h3>
+                    <p class="text-gray-600">Continuous updates, maintenance, and 24/7 support to ensure your business runs smoothly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-red-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Streamline Your Business?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Contact us today to get your POS system and transform your business operations</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://wa.me/264818529722?text=Hello%20Astute%20Technologies%2C%20I%27m%20ready%20to%20get%20started%20with%20your%20POS%20system." target="_blank" class="bg-white text-red-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-colors">
+                    <i class="fab fa-whatsapp mr-2"></i> Get Started Now
+                </a>
+                <a href="tel:+264818529722" class="bg-transparent border-2 border-white hover:bg-white hover:text-red-600 font-bold py-3 px-8 rounded-lg transition-all">
+                    <i class="fas fa-phone mr-2"></i> Call Us Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="flex items-center mb-4">
+                        <img src="./images/astute-logo-final-transparent.png" alt="Astute Technologies Logo" class="logo-img h-10 w-auto mr-3">
+                        <span class="text-xl font-bold"></span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Your trusted partner for comprehensive technology solutions in Namibia.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/AstutenessTechnology" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-red-400 transition-colors">Services</a></li>
+                        <li><a href="equipment.html" class="text-gray-400 hover:text-white transition-colors">Equipment</a></li>
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="bingo-lucky6-package.html" class="text-gray-400 hover:text-white transition-colors">Bingo & Lucky 6 Software</a></li>
+                        <li><a href="point-of-sale.html" class="text-red-400 transition-colors">POS Systems</a></li>
+                        <li><a href="it-support.html" class="text-gray-400 hover:text-white transition-colors">IT Support Services</a></li>
+                        <li><a href="acer-computer-box.html" class="text-gray-400 hover:text-white transition-colors">Acer Computer Box</a></li>
+                        <li><a href="betting-machine-terminal.html" class="text-gray-400 hover:text-white transition-colors">Betting Terminals</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Emergency Support</h3>
+                    <div class="emergency-support rounded-lg p-4 mb-4">
+                        <div class="flex items-center mb-2">
+                            <span class="live-dot"></span>
+                            <span class="font-bold">LIVE 24/7 SUPPORT</span>
+                        </div>
+                        <a href="tel:+264818529722" class="block text-xl font-bold mb-1">+264 81 852 9722</a>
+                        <a href="https://wa.me/264818529722" target="_blank" class="text-sm">WhatsApp: +264 81 852 9722</a>
+                    </div>
+                    <p class="text-gray-400 text-sm">Windhoek, Khomas Region, Namibia</p>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400 font-bold">&copy; 2025 Astute Technologies. All Rights Reserved.</p>
+                </div>
+                
+                <div class="flex items-center">
+                    <span class="text-gray-400 mr-2">Designed and Developed by</span>
+                    <a href="https://www.amateta.com" target="_blank" class="flex items-center text-white font-bold hover:text-red-400 transition-colors">
+                        <img src="./images/amateta.jpg" alt="Amateta" class="h-6 w-6 mr-2">
+                        www.amateta.com
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
-    <script src="../js/script.js"></script>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('#mobileMenu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Sticky Navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.sticky-nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
